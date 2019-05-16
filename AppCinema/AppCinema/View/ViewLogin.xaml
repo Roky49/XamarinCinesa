@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodelogin="clr-namespace:AppCinema.ViewModel"
+             x:Class="AppCinema.View.ViewLogin">
+    <ContentPage.BindingContext>
+        <viewmodelogin:ViewModelLogin/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Label Text="Logeo" />
+            <Entry Placeholder="User" Text="{Binding user}"  />
+
+            <Label Text="Pass" />
+            <Entry Placeholder="pass" Text="{Binding pass}" />
+
+            <Button Text="enviar" Command="{Binding Logueo}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

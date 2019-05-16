@@ -9,15 +9,16 @@
     <ContentPage.Content>
         <StackLayout >
             <Label Text="Welcome " FontSize="50" HorizontalOptions="Center" />
+            <Label Text="Cinema" TextColor="Red" FontSize="35" HorizontalOptions="Center" />
             <Image Source="popcorn512px.png" HorizontalOptions="FillAndExpand" />
 
-            
-            <Entry Placeholder="User" FontSize="40"  Text="{Binding user}"  />
-               
-            
-                    <Entry Placeholder="pass" Text="{Binding pass}" />
-               
-                <Button Text="enviar" Command="{Binding Logueo}" />
+            <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
+            <Entry Placeholder="Username" FontSize="40" HorizontalTextAlignment="Center"  Text="{Binding user}"  />
+
+
+            <Entry Placeholder="Password" FontSize="40" HorizontalTextAlignment="Center"  Text="{Binding pass}" />
+            </StackLayout>
+            <Button Text="Login" TextColor="Red" FontSize="20" Padding="20" Command="{Binding Logueo}" />
          
         </StackLayout>
     </ContentPage.Content>

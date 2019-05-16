@@ -4,7 +4,9 @@
              x:Class="AppCinema.View.ViewPrueba">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Hola"
+            <Label Text="Te redireciona el registro y la pagina de login  "
+                   
+                   FontSize="60"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

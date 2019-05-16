@@ -13,5 +13,6 @@ namespace AppCinema.Models
         public String LastName { get; set; }        
         public int Age { get; set; }        
         public String Image { get; set; }
+        public String token { get; set; }
     }
 }

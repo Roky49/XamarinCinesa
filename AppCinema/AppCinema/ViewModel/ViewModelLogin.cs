@@ -9,14 +9,15 @@ using Xamarin.Forms;
 
 namespace AppCinema.ViewModel
 {
-    public class ViewModelLogin: ViewModelBase
+    public class ViewModelLogin: ViewModelBase 
     {
+        
         RepositoryCinema repo;
         Login login;
 
         public ViewModelLogin()
         {
-
+           
              
                 this.repo = new RepositoryCinema();
             login = new Login();
@@ -60,8 +61,12 @@ namespace AppCinema.ViewModel
 
 
                     String token = await this.repo.Login(user, pass);
-                    if (token != null) { 
-                    ViewPrueba view = new ViewPrueba();
+                    if (token != null) {
+                        SessionService session = App.Locator.SessionService;
+                        Cinephile usuario = await this.repo.GetUser(user);
+                        usuario.token = token;
+                        session.Datos.Add(usuario);
+                        ViewPrueba view = new ViewPrueba();
                     await Application.Current.MainPage.Navigation.PushModalAsync(view);
                     }
 

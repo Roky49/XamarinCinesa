@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viemodel="clr-namespace:AppCinema.ViewModel"
+             x:Class="AppCinema.View.ViewRegistro">
+    <ContentPage.BindingContext>
+        <viemodel:ViewModelRegistro/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout >
+            <Label Text="registry " FontSize="50" HorizontalOptions="Center" />
+
+            <Image Source="popcorn256px.png" HorizontalOptions="FillAndExpand" />
+
+            <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
+                <Entry Placeholder="Email" FontSize="30" HorizontalTextAlignment="Center"  Text="{Binding Email}"  />
+                <Entry Placeholder="Password" FontSize="30" HorizontalTextAlignment="Center"  Text="{Binding Pass}" />
+                <Entry Placeholder="Name" FontSize="30" HorizontalTextAlignment="Center"  Text="{Binding Name}"  />
+                <Entry Placeholder="Last Name" FontSize="30" HorizontalTextAlignment="Center"  Text="{Binding LastName}"  />
+                <Entry Placeholder="Age" FontSize="30" HorizontalTextAlignment="Center"  Text="{Binding Age}"  />
+
+                <Label Text="para selecionar una imagen veo un carrusel con unas imagen ya definidas por nosotros
+                       " TextColor="Red" FontSize="20"/>
+
+
+
+            </StackLayout>
+            <Button Text="New User" TextColor="Red" FontSize="20" Padding="20" Command="{Binding NewUser}" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -7,14 +7,18 @@
         <viewmodelogin:ViewModelLogin/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <Label Text="Logeo" />
-            <Entry Placeholder="User" Text="{Binding user}"  />
+        <StackLayout >
+            <Label Text="Welcome " FontSize="50" HorizontalOptions="Center" />
+            <Image Source="popcorn512px.png" HorizontalOptions="FillAndExpand" />
 
-            <Label Text="Pass" />
-            <Entry Placeholder="pass" Text="{Binding pass}" />
-
-            <Button Text="enviar" Command="{Binding Logueo}" />
+            
+            <Entry Placeholder="User" FontSize="40"  Text="{Binding user}"  />
+               
+            
+                    <Entry Placeholder="pass" Text="{Binding pass}" />
+               
+                <Button Text="enviar" Command="{Binding Logueo}" />
+         
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

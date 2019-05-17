@@ -10,7 +10,7 @@
         <StackLayout >
             <Label Text="registry " FontSize="50" HorizontalOptions="Center" />
 
-            <Image Source="popcorn256px.png" HorizontalOptions="FillAndExpand" />
+            <Image Source="popcorn24px.png" HorizontalOptions="FillAndExpand" />
 
             <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
                 <Entry Placeholder="Email" FontSize="30" HorizontalTextAlignment="Center"  Text="{Binding Email}"  />

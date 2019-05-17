@@ -1,6 +1,7 @@
 ﻿using AppCinema.Base;
 using AppCinema.Models;
 using AppCinema.Repositories;
+using AppCinema.View;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -101,7 +102,7 @@ namespace AppCinema.ViewModel
                     Cinephile usuario = await this.repo.GetUser(Email);
                     usuario.token = await this.repo.Login(Email,Pass);
                     session.Datos.Add(usuario);
-
+                    ViewPrueba view = new ViewPrueba();
                     await Application.Current.MainPage.Navigation.PushModalAsync(view);
 
 

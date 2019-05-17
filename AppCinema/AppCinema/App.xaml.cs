@@ -21,7 +21,7 @@ namespace AppCinema
         {
             InitializeComponent();
 
-            MainPage = new ViewLogin();
+            MainPage = new MasterPrincipal();
         }
 
         protected override void OnStart()

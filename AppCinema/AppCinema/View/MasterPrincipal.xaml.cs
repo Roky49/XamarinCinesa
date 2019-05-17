@@ -27,6 +27,9 @@ namespace AppCinema.View
             var page3 = new MenuPagina() { TipoPagina = typeof(ViewPrueba), Titulo = "Pagina de prueba" };
             this.menuPaginas.Add(page3);
 
+            var page4 = new MenuPagina() { TipoPagina = typeof(ViewPerfil), Titulo = "Perfil" };
+            this.menuPaginas.Add(page4);
+
             Detail = new NavigationPage((Page)Activator.CreateInstance((typeof(ViewLogin))));
             IsPresented = false;
 

@@ -28,21 +28,25 @@ namespace AppCinema.Repositories
         /// <typeparam name="T"></typeparam>
         /// <param name="peticion">EL string con la peticion</param>
         /// <returns>El contenido de la llamada</returns>
-        public async Task<T> CallApi<T>(String peticion)
+        private async Task<T> CallApi<T>(String peticion
+            , String token)
         {
-            using (HttpClient client = new HttpClient())
+            using (HttpClient cliente = new HttpClient())
             {
-                client.BaseAddress = new Uri(this.uriApi);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(headerJson);
+                cliente.BaseAddress = new Uri(this.uriApi);
+                cliente.DefaultRequestHeaders.Accept.Clear();
+                cliente.DefaultRequestHeaders.Accept.Add(headerJson);
                 if (token != null)
                 {
-                    client.DefaultRequestHeaders.Add("Authorization", "bearer " + token);
+                    cliente.DefaultRequestHeaders.Add("Authorization", "bearer "
+                        + token);
                 }
-                HttpResponseMessage response = await client.GetAsync(peticion);
+                HttpResponseMessage response =
+                    await cliente.GetAsync(peticion);
                 if (response.IsSuccessStatusCode)
                 {
-                    T datos = await response.Content.ReadAsAsync<T>();
+                    T datos =
+                        await response.Content.ReadAsAsync<T>();
                     return (T)Convert.ChangeType(datos, typeof(T));
                 }
                 else
@@ -169,13 +173,13 @@ namespace AppCinema.Repositories
         /// </summary>
         /// <param name="user">String. El email del usuario</param>
         /// <returns></returns>
-        public async Task<List<Lists>> GetUserList(String user)
+        public async Task<List<Lists>> GetUserList(String user,String token)
         {
-            return await CallApi<List<Lists>>("api/List/GetUserList?user=" + user);
+            return await CallApi<List<Lists>>("api/List/GetUserList?user=" + user,token);
         }
-        public async Task<Cinephile> GetUser(String user)
+        public async Task<Cinephile> GetUser(String user , String token)
         {
-            return await CallApi<Cinephile>("api/Cinephile/" + user);
+            return await CallApi<Cinephile>("api/Cinephile/" + user,token);
         }
         public async Task RegisterUser(string email, string pass, string name, string lastName, int? age)
         {

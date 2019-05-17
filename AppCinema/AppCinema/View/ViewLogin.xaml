@@ -10,7 +10,7 @@
         <StackLayout >
             <Label Text="Welcome " FontSize="50" HorizontalOptions="Center" />
             <Label Text="Cinema" TextColor="Red" FontSize="35" HorizontalOptions="Center" />
-            <Image Source="popcorn512px.png" HorizontalOptions="FillAndExpand" />
+            <Image Source="popcorn256px.png" HorizontalOptions="FillAndExpand" />
 
             <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
             <Entry Placeholder="Username" FontSize="40" HorizontalTextAlignment="Center"  Text="{Binding user}"  />

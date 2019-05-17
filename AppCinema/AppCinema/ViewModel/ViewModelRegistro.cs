@@ -98,10 +98,15 @@ namespace AppCinema.ViewModel
 
 
                     await this.repo.RegisterUser(Email,Pass,Name,LastName,Age);
-                    SessionService session = App.Locator.SessionService;
-                    Cinephile usuario = await this.repo.GetUser(Email);
-                    usuario.token = await this.repo.Login(Email,Pass);
-                    session.Datos.Add(usuario);
+                    App.Locator.SessionService.User.token = await this.repo.Login(Email, Pass);
+                    Cinephile usuario = await this.repo.GetUser(Email, App.Locator.SessionService.User.token);
+                    
+                    App.Locator.SessionService.User.Age = usuario.Age;
+                    App.Locator.SessionService.User.Email = usuario.Email;
+                    App.Locator.SessionService.User.Image = usuario.Image;
+                    App.Locator.SessionService.User.LastName = usuario.LastName;
+                    App.Locator.SessionService.User.Name = usuario.Name;
+                    App.Locator.SessionService.User.Password = usuario.Password;
                     ViewPrueba view = new ViewPrueba();
                     await Application.Current.MainPage.Navigation.PushModalAsync(view);
 

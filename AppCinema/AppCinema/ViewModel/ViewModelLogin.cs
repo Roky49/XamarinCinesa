@@ -11,16 +11,16 @@ namespace AppCinema.ViewModel
 {
     public class ViewModelLogin: ViewModelBase 
     {
-        
+       
         RepositoryCinema repo;
-        Login login;
+       
 
         public ViewModelLogin()
         {
+
            
-             
-                this.repo = new RepositoryCinema();
-            login = new Login();
+            this.repo = new RepositoryCinema();
+          
 
         }
 
@@ -62,10 +62,19 @@ namespace AppCinema.ViewModel
 
                     String token = await this.repo.Login(user, pass);
                     if (token != null) {
-                        SessionService session = App.Locator.SessionService;
-                        Cinephile usuario = await this.repo.GetUser(user);
-                        usuario.token = token;
-                        session.Datos.Add(usuario);
+
+                        Cinephile usuario = await this.repo.GetUser(user,token);
+
+                        //SessionService session = App.Locator.SessionService ;
+                        //session.Name = usuario.Name;
+                        //App.Locator.SessionService.User.token = token;
+                        //App.Locator.SessionService.User.Age = usuario.Age;
+                        //App.Locator.SessionService.User.Email = usuario.Email;
+                        //App.Locator.SessionService.User.Image = usuario.Image;
+                        //App.Locator.SessionService.User.LastName = usuario.LastName;
+                        //App.Locator.SessionService.User.Name = usuario.Name;
+                        //App.Locator.SessionService.User.Password = usuario.Password;
+
                         ViewPrueba view = new ViewPrueba();
                     await Application.Current.MainPage.Navigation.PushModalAsync(view);
                     }

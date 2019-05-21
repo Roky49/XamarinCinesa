@@ -1,46 +1,36 @@
-﻿using AppCinema.Models;
-using Autofac;
-using System;
+﻿using System;
 using System.Collections.Generic;
-
 using System.Text;
+using Autofac;
+using AppCinema.Models;
 
 namespace AppCinema.IoC
 {
-    public class IoConfiguration
+    public class IoCConfiguration
     {
-        
-
+        //DECLARAMOS LA VARIABLE DEL CONTENEDOR
         private IContainer container;
-
-        public IoConfiguration()
+        public IoCConfiguration()
         {
-            ContainerBuilder builder = new ContainerBuilder();
-            //registramos todos los tipos de inyeciones de dependencias o clases que necesitamos que nos devuelva el contenedor 
-            //clases comunicadas entre otras
-            //builder.RegisterType<ModelViewApuesta>();
-            builder.RegisterType<SessionService>().SingleInstance();
+            //CREAMOS EL CONSTRUCTOR DE CONTENEDORES
+            var builder = new ContainerBuilder();
+            //DEBEMOS RESOLVER LAS CLASES PARA NUESTRO
+            //CONTENEDOR PARA LAS DEPENDENCIAS
+            //AL REGISTRAR LOS TIPOS, PODEMOS INDICAR
+            //EL NUMERO DE INSTANCIAS
+            //POR DEFECTO, REALIZA UNA INSTANCIA POR
+            //CADA PETICION
+            builder.RegisterType<SessionService>().SingleInstance();
+            //CONTRUIMOS EL CONTENEDOR
             this.container = builder.Build();
-
-
-
         }
-
+        //CREAMOS UNA PROPIEDAD QUE NOS DEVUELVA
+        //LA INSTANCIA DE SESSION SERVICE
+        //DICHA INSTANCIA NOS LA RESOLVERA EL CONTENEDOR
         public SessionService SessionService
         {
             get { return this.container.Resolve<SessionService>(); }
-          
-        }
-
-        //public ModelViewApuesta ModelViewApuest
-        //{
-        //    get
-        //    {
-        //        return this.container.Resolve<ModelViewApuesta>();
-        //    }
-        //}
-
+        }
     }
-
 }
 

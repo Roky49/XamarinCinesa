@@ -4,29 +4,34 @@ using AppCinema.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace AppCinema.ViewModel
 {
     public class ViewModelPerfil:ViewModelBase
     {
         RepositoryCinema repo;
-        
+      
 
         public ViewModelPerfil()
         {
 
 
             this.repo = new RepositoryCinema();
-            Usuario = new SessionService();
+            
             //App.Locator.SessionService.Datos.
             SessionService session = App.Locator.SessionService;
-            Usuario = session.User;
+            Task.Run(async () => {
+                this.Usuario = await this.repo.GetUser(session.Email, session.token);
+            });
+
+           
         }
 
 
-        private SessionService _Usuario;
+        private Cinephile _Usuario;
 
-        public SessionService Usuario
+        public Cinephile Usuario
         {
             set
             {

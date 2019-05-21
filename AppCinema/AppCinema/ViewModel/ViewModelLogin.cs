@@ -13,14 +13,17 @@ namespace AppCinema.ViewModel
     {
        
         RepositoryCinema repo;
-       
+        SessionService session;
+
+
 
         public ViewModelLogin()
         {
 
            
             this.repo = new RepositoryCinema();
-          
+            this.session =  App.Locator.SessionService;
+
 
         }
 
@@ -64,19 +67,19 @@ namespace AppCinema.ViewModel
                     if (token != null) {
 
                         Cinephile usuario = await this.repo.GetUser(user,token);
+                        
 
-                        //SessionService session = App.Locator.SessionService ;
-                        //session.Name = usuario.Name;
-                        //App.Locator.SessionService.User.token = token;
-                        //App.Locator.SessionService.User.Age = usuario.Age;
-                        //App.Locator.SessionService.User.Email = usuario.Email;
-                        //App.Locator.SessionService.User.Image = usuario.Image;
-                        //App.Locator.SessionService.User.LastName = usuario.LastName;
-                        //App.Locator.SessionService.User.Name = usuario.Name;
-                        //App.Locator.SessionService.User.Password = usuario.Password;
+                        
+                        session.token = token;
+                        session.Age = usuario.Age;
+                        session.Email = usuario.Email;
+                        session.Image = usuario.Image;
+                        session.LastName = usuario.LastName;
+                        session.Name = usuario.Name;
+                        session.Password = usuario.Password;
 
-                        ViewPrueba view = new ViewPrueba();
-                    await Application.Current.MainPage.Navigation.PushModalAsync(view);
+                        ViewPerfil view = new ViewPerfil();
+                        await Application.Current.MainPage.Navigation.PushModalAsync(view);
                     }
 
                 });

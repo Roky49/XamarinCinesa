@@ -6,6 +6,7 @@ namespace AppCinema.Models
 {
     public class SessionService
     {
+ 
         public String Email { get; set; }
         public String Password { get; set; }
         public String Name { get; set; }
@@ -14,11 +15,6 @@ namespace AppCinema.Models
         public String Image { get; set; }
         public String token { get; set; }
 
-        public SessionService User;
-
-        public SessionService()
-        {
-            User = new SessionService();
-        }
+       
     }
 }

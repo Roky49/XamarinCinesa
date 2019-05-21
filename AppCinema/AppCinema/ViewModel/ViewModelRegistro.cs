@@ -12,14 +12,16 @@ namespace AppCinema.ViewModel
     class ViewModelRegistro : ViewModelBase
     {
         RepositoryCinema repo;
-        Cinephile NewUsers;
+        SessionService session;
+
+
 
         public ViewModelRegistro()
         {
 
 
             this.repo = new RepositoryCinema();
-            NewUsers = new Cinephile();
+            session = App.Locator.SessionService;
 
         }
 
@@ -97,17 +99,16 @@ namespace AppCinema.ViewModel
 
 
 
-                    await this.repo.RegisterUser(Email,Pass,Name,LastName,Age);
-                    App.Locator.SessionService.User.token = await this.repo.Login(Email, Pass);
-                    Cinephile usuario = await this.repo.GetUser(Email, App.Locator.SessionService.User.token);
-                    
-                    App.Locator.SessionService.User.Age = usuario.Age;
-                    App.Locator.SessionService.User.Email = usuario.Email;
-                    App.Locator.SessionService.User.Image = usuario.Image;
-                    App.Locator.SessionService.User.LastName = usuario.LastName;
-                    App.Locator.SessionService.User.Name = usuario.Name;
-                    App.Locator.SessionService.User.Password = usuario.Password;
-                    ViewPrueba view = new ViewPrueba();
+                   await this.repo.RegisterUser(Email,Pass,Name,LastName,Age);
+                    session.token = await this.repo.Login(Email, Pass);
+                    session.Age = Age;
+                    session.Email = Email;
+                    //session.Image = image;
+                    session.LastName = LastName;
+                    session.Name = Name;
+                    session.Password = Pass;
+
+                    ViewPerfil view = new ViewPerfil();
                     await Application.Current.MainPage.Navigation.PushModalAsync(view);
 
 

@@ -10,11 +10,12 @@ namespace AppCinema
 {
     public partial class App : Application
     {
-        // para guardar la sesion del token 
-        private static IoConfiguration _locator;
-        public static IoConfiguration Locator { get { return _locator = _locator ?? new IoConfiguration(); } }
-       //para llamrlo desde otros lados en el comand
-        // DoctorViewModel viewmodel =                     App.Locator.DoctorViewModel; 
+        private static IoCConfiguration _Locator;
+        //CREAMOS LA PROPIEDAD STATIC PARA DEVOLVER IoC
+        public static IoCConfiguration Locator
+        {
+            get { return _Locator = _Locator ?? new IoCConfiguration(); }
+        }
 
 
         public App()

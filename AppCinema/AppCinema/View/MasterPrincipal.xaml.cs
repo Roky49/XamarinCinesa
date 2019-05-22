@@ -17,9 +17,20 @@ namespace AppCinema.View
         public MasterPrincipal()
         {
             InitializeComponent();
+            
             this.menuPaginas = new List<MenuPagina>();
-            var page1 = new MenuPagina() { TipoPagina = typeof(ViewLogin), Titulo = "Login" };
-            this.menuPaginas.Add(page1);
+            if (App.Locator.SessionService.token != null)
+            {
+                this.menuPaginas.Clear();
+                var page1 = new MenuPagina() { TipoPagina = typeof(ViewPerfil), Titulo = "Hola "+App.Locator.SessionService.Name };
+                this.menuPaginas.Add(page1);
+            }
+            else
+            {
+                this.menuPaginas.Clear();
+                var page1 = new MenuPagina() { TipoPagina = typeof(ViewLogin), Titulo = "Login" };
+                this.menuPaginas.Add(page1);
+            }
             var page2 = new MenuPagina() { TipoPagina = typeof(ViewRegistro), Titulo = "Nuevo registro" };
 
             this.menuPaginas.Add(page2);
@@ -27,8 +38,10 @@ namespace AppCinema.View
             var page3 = new MenuPagina() { TipoPagina = typeof(ViewPrueba), Titulo = "Pagina de prueba" };
             this.menuPaginas.Add(page3);
 
-            var page4 = new MenuPagina() { TipoPagina = typeof(ViewPerfil), Titulo = "Perfil" };
-            this.menuPaginas.Add(page4);
+            
+
+            var page99 = new MenuPagina() { TipoPagina = typeof(ViewCerrarSesion), Titulo = "Cerrar Sesion" };
+            this.menuPaginas.Add(page99);
 
             Detail = new NavigationPage((Page)Activator.CreateInstance((typeof(ViewLogin))));
             IsPresented = false;

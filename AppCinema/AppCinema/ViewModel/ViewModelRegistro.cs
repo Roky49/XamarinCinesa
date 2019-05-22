@@ -108,6 +108,9 @@ namespace AppCinema.ViewModel
                     session.Name = Name;
                     session.Password = Pass;
 
+                    MasterPrincipal master = new MasterPrincipal();
+                    await Application.Current.MainPage.Navigation.PushModalAsync(master);
+
                     ViewPerfil view = new ViewPerfil();
                     await Application.Current.MainPage.Navigation.PushModalAsync(view);
 

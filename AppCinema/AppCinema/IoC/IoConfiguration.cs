@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using Autofac;
-using AppCinema.Models;
+using AppCinema.Models;
+
 
 namespace AppCinema.IoC
 {
@@ -21,6 +22,7 @@ namespace AppCinema.IoC
             //POR DEFECTO, REALIZA UNA INSTANCIA POR
             //CADA PETICION
             builder.RegisterType<SessionService>().SingleInstance();
+           
             //CONTRUIMOS EL CONTENEDOR
             this.container = builder.Build();
         }

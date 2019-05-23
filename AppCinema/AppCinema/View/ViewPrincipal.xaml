@@ -16,7 +16,7 @@
                        HeightRequest="30"
                        HorizontalOptions="CenterAndExpand" />
             <ContentView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <control:CarouselView ItemsSource="{Binding InTheatreMovies}">
+                <control:CarouselView ItemsSource="{Binding InTheatreMovies}" Position="{Binding Position, Mode=TwoWay}">
                     <control:CarouselView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
@@ -50,7 +50,7 @@
                        HeightRequest="30"
                        HorizontalOptions="CenterAndExpand" />
             <ContentView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <control:CarouselView ItemsSource="{Binding SpainMovies}">
+                <control:CarouselView ItemsSource="{Binding SpainMovies}" Position="{Binding Position, Mode=TwoWay}">
                     <control:CarouselView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
@@ -59,7 +59,6 @@
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="70"/>
                                     </Grid.RowDefinitions>
-
                                     <Image Source="{Binding PosterPath}"
                                                HorizontalOptions="FillAndExpand" 
                                                VerticalOptions="FillAndExpand"/>
@@ -84,7 +83,7 @@
                        HeightRequest="30"
                        HorizontalOptions="CenterAndExpand" />
             <ContentView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <control:CarouselView ItemsSource="{Binding KidsMovies}">
+                <control:CarouselView ItemsSource="{Binding KidsMovies}" Position="{Binding Position, Mode=TwoWay}">
                     <control:CarouselView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
@@ -109,5 +108,5 @@
                 </control:CarouselView>
             </ContentView>
         </StackLayout>
-    </ContentPage>
+    </ContentPage>    
 </TabbedPage>

@@ -63,16 +63,15 @@ namespace AppCinema.ViewModel
             this.SpainMovies = new ObservableCollection<DiscoverMovie>(coleccion);
             repoMovie = new RepositoryMovie();
             //Ahora, rellena el carousel con la informacion de verdad
-            Task.Run(async () => {
+            Task.Run(async () =>
+            {
                 DiscoverMovieRequest request = await repoMovie.DiscoverInTheatreMovies(Sort.PopularityDesc, IncludeAdult.Yes);
-                this.InTheatreMovies = new ObservableCollection<DiscoverMovie>(request.Movies);                
-            });
-            Task.Run(async () => {
-                DiscoverMovieRequest request = await repoMovie.DiscoverSpainMovies(Sort.PopularityDesc, IncludeAdult.Yes);
+                this.InTheatreMovies = new ObservableCollection<DiscoverMovie>(request.Movies);
+
+                request = await repoMovie.DiscoverSpainMovies(Sort.PopularityDesc, IncludeAdult.Yes);
                 this.SpainMovies = new ObservableCollection<DiscoverMovie>(request.Movies);
-            });
-            Task.Run(async () => {
-                DiscoverMovieRequest request = await repoMovie.DiscoverKidsMovies(Sort.PopularityDesc, IncludeAdult.No);
+
+                request = await repoMovie.DiscoverKidsMovies(Sort.PopularityDesc, IncludeAdult.No);
                 this.KidsMovies = new ObservableCollection<DiscoverMovie>(request.Movies);
             });
         }

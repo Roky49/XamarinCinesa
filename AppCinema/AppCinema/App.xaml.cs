@@ -1,4 +1,6 @@
-﻿using AppCinema.View;
+﻿using AppCinema.Base;
+using AppCinema.IoC;
+using AppCinema.View;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -8,12 +10,19 @@ namespace AppCinema
 {
     public partial class App : Application
     {
+        private static IoCConfiguration _Locator;
+        //CREAMOS LA PROPIEDAD STATIC PARA DEVOLVER IoC
+        public static IoCConfiguration Locator
+        {
+            get { return _Locator = _Locator ?? new IoCConfiguration(); }
+        }
+
+
         public App()
         {
             InitializeComponent();
 
-            //MainPage = new ViewLogin();
-            MainPage = new ViewPrincipal();
+            MainPage = new MasterPrincipal();
         }
 
         protected override void OnStart()

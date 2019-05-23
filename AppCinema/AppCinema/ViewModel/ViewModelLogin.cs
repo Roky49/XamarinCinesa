@@ -9,17 +9,21 @@ using Xamarin.Forms;
 
 namespace AppCinema.ViewModel
 {
-    public class ViewModelLogin: ViewModelBase
+    public class ViewModelLogin: ViewModelBase 
     {
+       
         RepositoryCinema repo;
-        Login login;
+        SessionService session;
+
+
 
         public ViewModelLogin()
         {
 
-             
-                this.repo = new RepositoryCinema();
-            login = new Login();
+           
+            this.repo = new RepositoryCinema();
+            this.session =  App.Locator.SessionService;
+
 
         }
 
@@ -60,9 +64,23 @@ namespace AppCinema.ViewModel
 
 
                     String token = await this.repo.Login(user, pass);
-                    if (token != null) { 
-                    ViewPrueba view = new ViewPrueba();
-                    await Application.Current.MainPage.Navigation.PushModalAsync(view);
+                    if (token != null) {
+
+                        Cinephile usuario = await this.repo.GetUser(user,token);
+                        
+
+                        
+                        session.token = token;
+                        session.Age = usuario.Age;
+                        session.Email = usuario.Email;
+                        session.Image = usuario.Image;
+                        session.LastName = usuario.LastName;
+                        session.Name = usuario.Name;
+                        session.Password = usuario.Password;
+                        MasterPrincipal master = new MasterPrincipal();
+                        await Application.Current.MainPage.Navigation.PushModalAsync(master);
+                        ViewPerfil view = new ViewPerfil();
+                        await Application.Current.MainPage.Navigation.PushModalAsync(view);
                     }
 
                 });

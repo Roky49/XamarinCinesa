@@ -14,6 +14,8 @@
             <Label  FontSize="30" HorizontalTextAlignment="Center"  Text="{Binding Usuario.Name}"  />
             <Label  FontSize="30" HorizontalTextAlignment="Center"  Text="{Binding Usuario.LastName}"  />
             <Label  FontSize="30" HorizontalTextAlignment="Center"  Text="{Binding Usuario.Age}"  />
+            <Label Text="ponte a currar" FontSize="40"/>
+
             <Image  Source="{Binding Usuario.Image}" HorizontalOptions="Center" />
 
         </StackLayout>

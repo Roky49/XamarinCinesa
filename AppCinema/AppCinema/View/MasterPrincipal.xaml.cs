@@ -11,10 +11,11 @@ using Xamarin.Forms.Xaml;
 namespace AppCinema.View
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MasterPrincipal : MasterDetailPage
+	public partial class MasterModelPrincipal : MasterDetailPage
     {
         public List<MenuPagina> menuPaginas { set; get; }
-        public MasterPrincipal()
+         
+        public MasterModelPrincipal()
         {
             InitializeComponent();
             
@@ -22,31 +23,36 @@ namespace AppCinema.View
             if (App.Locator.SessionService.token != null)
             {
                 this.menuPaginas.Clear();
-                var page1 = new MenuPagina() { TipoPagina = typeof(ViewPerfil), Titulo = "Hola "+App.Locator.SessionService.Name };
+                var page1 = new MenuPagina() { TipoPagina = typeof(ViewLogin), Titulo = "Hola "+App.Locator.SessionService.Name };
                 this.menuPaginas.Add(page1);
             }
             else
             {
                 this.menuPaginas.Clear();
-                var page1 = new MenuPagina() { TipoPagina = typeof(ViewLogin), Titulo = "Login" };
+                 var page1 = new MenuPagina() { TipoPagina = typeof(ViewLogin), Titulo = "Login" };
                 this.menuPaginas.Add(page1);
             }
             var page2 = new MenuPagina() { TipoPagina = typeof(ViewRegistro), Titulo = "Nuevo registro" };
 
             this.menuPaginas.Add(page2);
 
+          
+
             var page3 = new MenuPagina() { TipoPagina = typeof(ViewPrueba), Titulo = "Pagina de prueba" };
             this.menuPaginas.Add(page3);
 
-            
+            var page4 = new MenuPagina() { TipoPagina = typeof(ViewRegistro), Titulo = "Inicio" };
 
-            var page99 = new MenuPagina() { TipoPagina = typeof(ViewCerrarSesion), Titulo = "Cerrar Sesion" };
-            this.menuPaginas.Add(page99);
-
-            Detail = new NavigationPage((Page)Activator.CreateInstance((typeof(ViewLogin))));
+            this.menuPaginas.Add(page4);
+            if (App.Locator.SessionService.token != null)
+            {
+                var page99 = new MenuPagina() { TipoPagina = typeof(ViewCerrarSesion), Titulo = "Cerrar Sesion" };
+                this.menuPaginas.Add(page99);
+            }
+            Detail = new NavigationPage((Page)Activator.CreateInstance((typeof(ViewPrincipal))));
             IsPresented = false;
 
-
+            this.lista.ItemsSource = null;
             this.lista.ItemsSource = this.menuPaginas;
 
             this.lista.ItemSelected += CambiarPagina;

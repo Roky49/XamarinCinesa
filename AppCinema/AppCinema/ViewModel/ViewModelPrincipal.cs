@@ -13,14 +13,34 @@ namespace AppCinema.ViewModel
     public class ViewModelPrincipal : ViewModelBase
     {
         RepositoryMovie repoMovie;
-        private ObservableCollection<DiscoverMovie> _Movies;
-        public ObservableCollection<DiscoverMovie> Movies
+        private ObservableCollection<DiscoverMovie> _InTheatreMovies;
+        public ObservableCollection<DiscoverMovie> InTheatreMovies
         {
-            get { return this._Movies; }
+            get { return this._InTheatreMovies; }
             set
             {
-                this._Movies = value;
-                OnPropertyChanged("Movies");
+                this._InTheatreMovies = value;
+                OnPropertyChanged("InTheatreMovies");
+            }
+        }
+        private ObservableCollection<DiscoverMovie> _KidsMovies;
+        public ObservableCollection<DiscoverMovie> KidsMovies
+        {
+            get { return this._KidsMovies; }
+            set
+            {
+                this._KidsMovies = value;
+                OnPropertyChanged("KidsMovies");
+            }
+        }
+        private ObservableCollection<DiscoverMovie> _SpainMovies;
+        public ObservableCollection<DiscoverMovie> SpainMovies
+        {
+            get { return this._SpainMovies; }
+            set
+            {
+                this._SpainMovies = value;
+                OnPropertyChanged("SpainMovies");
             }
         }
         public ViewModelPrincipal()
@@ -38,12 +58,22 @@ namespace AppCinema.ViewModel
             };
             coleccion.Add(movie);
             //Rellena la coleccion con la pelicula vacia
-            this.Movies = new ObservableCollection<DiscoverMovie>(coleccion);
+            this.InTheatreMovies = new ObservableCollection<DiscoverMovie>(coleccion);
+            this.KidsMovies = new ObservableCollection<DiscoverMovie>(coleccion);
+            this.SpainMovies = new ObservableCollection<DiscoverMovie>(coleccion);
             repoMovie = new RepositoryMovie();
             //Ahora, rellena el carousel con la informacion de verdad
             Task.Run(async () => {
                 DiscoverMovieRequest request = await repoMovie.DiscoverInTheatreMovies(Sort.PopularityDesc, IncludeAdult.Yes);
-                this.Movies = new ObservableCollection<DiscoverMovie>(request.Movies);
+                this.InTheatreMovies = new ObservableCollection<DiscoverMovie>(request.Movies);                
+            });
+            Task.Run(async () => {
+                DiscoverMovieRequest request = await repoMovie.DiscoverSpainMovies(Sort.PopularityDesc, IncludeAdult.Yes);
+                this.SpainMovies = new ObservableCollection<DiscoverMovie>(request.Movies);
+            });
+            Task.Run(async () => {
+                DiscoverMovieRequest request = await repoMovie.DiscoverKidsMovies(Sort.PopularityDesc, IncludeAdult.No);
+                this.KidsMovies = new ObservableCollection<DiscoverMovie>(request.Movies);
             });
         }
     }

@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+             xmlns:viewmodels="clr-namespace:AppCinema.ViewModel"
+             BackgroundColor="#292B2C"
+             x:Class="AppCinema.View.ViewPrincipal">
+    <TabbedPage.BindingContext>
+        <viewmodels:ViewModelPrincipal/>
+    </TabbedPage.BindingContext>
+    <ContentPage Title="En cartelera">
+        <StackLayout>
+            <Label Text="En cartelera" 
+                       FontSize="Large" 
+                       TextColor="WhiteSmoke"
+                       HeightRequest="30"
+                       HorizontalOptions="CenterAndExpand" />
+            <ContentView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <control:CarouselView ItemsSource="{Binding InTheatreMovies}" Position="{Binding Position, Mode=TwoWay}">
+                    <control:CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="70"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Image Source="{Binding PosterPath}"
+                                               HorizontalOptions="FillAndExpand" 
+                                               VerticalOptions="FillAndExpand"/>
+                                    <Label Grid.Row="1"
+                                               Text="{Binding Title}" 
+                                               TextColor="WhiteSmoke" 
+                                               FontSize="Medium"
+                                               HorizontalOptions="CenterAndExpand"/>
+                                </Grid>
+                            </StackLayout>
+                        </DataTemplate>
+                    </control:CarouselView.ItemTemplate>
+                </control:CarouselView>
+            </ContentView>
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="Españolas">
+        <StackLayout>
+            <Label Text="Españolas" 
+                       FontSize="Large" 
+                       TextColor="WhiteSmoke"
+                       HeightRequest="30"
+                       HorizontalOptions="CenterAndExpand" />
+            <ContentView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <control:CarouselView ItemsSource="{Binding SpainMovies}" Position="{Binding Position, Mode=TwoWay}">
+                    <control:CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="70"/>
+                                    </Grid.RowDefinitions>
+                                    <Image Source="{Binding PosterPath}"
+                                               HorizontalOptions="FillAndExpand" 
+                                               VerticalOptions="FillAndExpand"/>
+                                    <Label Grid.Row="1"
+                                               Text="{Binding Title}" 
+                                               TextColor="WhiteSmoke" 
+                                               FontSize="Medium"
+                                               HorizontalOptions="CenterAndExpand"/>
+                                </Grid>
+                            </StackLayout>
+                        </DataTemplate>
+                    </control:CarouselView.ItemTemplate>
+                </control:CarouselView>
+            </ContentView>
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="Para niños">
+        <StackLayout>
+            <Label Text="Para niños" 
+                       FontSize="Large" 
+                       TextColor="WhiteSmoke"
+                       HeightRequest="30"
+                       HorizontalOptions="CenterAndExpand" />
+            <ContentView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <control:CarouselView ItemsSource="{Binding KidsMovies}" Position="{Binding Position, Mode=TwoWay}">
+                    <control:CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="70"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Image Source="{Binding PosterPath}"
+                                               HorizontalOptions="FillAndExpand" 
+                                               VerticalOptions="FillAndExpand"/>
+                                    <Label Grid.Row="1"
+                                               Text="{Binding Title}" 
+                                               TextColor="WhiteSmoke" 
+                                               FontSize="Medium"
+                                               HorizontalOptions="CenterAndExpand"/>
+                                </Grid>
+                            </StackLayout>
+                        </DataTemplate>
+                    </control:CarouselView.ItemTemplate>
+                </control:CarouselView>
+            </ContentView>
+        </StackLayout>
+    </ContentPage>    
+</TabbedPage>

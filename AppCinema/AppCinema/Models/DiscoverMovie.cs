@@ -12,8 +12,13 @@ namespace AppCinema.Models
         public int ID { get; set; }
         [JsonProperty("title")]
         public String Title { get; set; }
+        private String _PosterPath;
         [JsonProperty("poster_path")]
-        public String PosterPath { get; set; }
+        public String PosterPath
+        {
+            get { return this._PosterPath; }
+            set { this._PosterPath = ImagesPath + value; }
+        }
         public static String ImagesPath { get; set; }
         public DiscoverMovie()
         {

@@ -13,11 +13,12 @@
                    TextColor="WhiteSmoke"
                    VerticalOptions="Start" 
                    HorizontalOptions="CenterAndExpand" />
-            <ListView ItemsSource="{Binding Movies}">
+            <ListView ItemsSource="{Binding Movies}" HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="{Binding Poster}" WidthRequest="200" HeightRequest="200" />
                                 <Label Text="{Binding Title}"
                                        TextColor="WhiteSmoke"
                                        FontSize="Large"/>

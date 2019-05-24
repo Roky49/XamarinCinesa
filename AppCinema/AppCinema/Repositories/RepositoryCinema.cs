@@ -177,6 +177,7 @@ namespace AppCinema.Repositories
         {
             return await CallApi<List<Lists>>("api/List/GetUserList?user=" + user,token);
         }
+
         public async Task<Cinephile> GetUser(String user , String token)
         {
             return await CallApi<Cinephile>("api/Cinephile/" + user,token);

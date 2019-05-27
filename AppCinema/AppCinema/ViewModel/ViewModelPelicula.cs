@@ -3,6 +3,7 @@ using AppCinema.Models;
 using AppCinema.Repositories;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,14 +19,25 @@ namespace AppCinema.ViewModel
             set
             {
                 this._Movie = value;
+                this.Genres = new ObservableCollection<Genre>(value.Genres);
                 OnPropertyChanged("Movie");
             }
         }
-        public ViewModelPelicula(int movieId)
+        private ObservableCollection<Genre> _Genres;
+        public ObservableCollection<Genre> Genres
+        {
+            get { return this._Genres; }
+            set
+            {
+                this._Genres = value;
+                OnPropertyChanged("Genres");
+            }
+        }
+        public ViewModelPelicula()
         {
             repoMovie = new RepositoryMovie();
             Task.Run(async() => {
-                this.Movie = await repoMovie.GetMovie(movieId);
+                this.Movie = await repoMovie.GetMovie(120);
             });
         }
     }

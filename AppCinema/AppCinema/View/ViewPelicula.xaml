@@ -1,12 +1,56 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:AppCinema.ViewModel"
+             BackgroundColor="#292B2C"
              x:Class="AppCinema.View.ViewPelicula">
+    <ContentPage.BindingContext>
+        <viewmodels:ViewModelPelicula/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Grid Margin="0, -20, 0, 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Column="0" 
+                             HorizontalOptions="FillAndExpand" 
+                             VerticalOptions="FillAndExpand" 
+                             Margin="5, 48, 0, 0"
+                             HeightRequest="200">
+                    <Image Aspect="Fill" Source="{Binding Movie.Poster}" />
+                </StackLayout>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0"
+                           Margin="0, 40, 0, 0"
+                           FontSize="Large"
+                           Text="{Binding Movie.Title}" 
+                           TextColor="WhiteSmoke"/>
+                    <StackLayout Grid.Row="1" Orientation="Horizontal">
+                        <Label FontSize="Large" Text="{Binding Movie.VoteAverage}" TextColor="WhiteSmoke"/>
+                        <Image Source="C:\xamarin_projects\XamarinCinesa\AppCinema\AppCinema.Android\Resources\drawable\popcorn24px.png" HeightRequest="24" />
+                    </StackLayout>
+                    <ListView Margin="0, -60, 0, 0" Grid.Row="2" ItemsSource="{Binding Genres}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Label Text="{Binding Name}" TextColor="WhiteSmoke" FontSize="Medium"/>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Grid>
+            <Label Margin="0, -10, 0, 0"
+                   Text="{Binding Movie.Overview}"
+                   TextColor="WhiteSmoke"
+                   FontSize="Small"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

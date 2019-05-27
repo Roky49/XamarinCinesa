@@ -38,7 +38,7 @@ namespace AppCinema.ViewModel
                         movies.Add(await repoMovie.GetMovie(lItem.IdMovie));
                     }
                 }
-                this._Movies = new ObservableCollection<Movie>(movies);
+                this.Movies = new ObservableCollection<Movie>(movies);
             });
         }
     }

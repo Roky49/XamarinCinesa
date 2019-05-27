@@ -17,10 +17,11 @@ namespace AppCinema.ViewModel
         public ViewModelPerfil()
         {
             this.repo = new RepositoryCinema();
-            
+
             //App.Locator.SessionService.Datos.
             SessionService session = App.Locator.SessionService;
-            Task.Run(async () => {
+            Task.Run(async () =>
+            {
                 this.Usuario = await this.repo.GetUser(session.Email, session.token);
                 this.Movie = await this.repo.GetUserList(session.Email, session.token);
                 List<Lists> listMovies = await this.repo.GetUserList(session.Email, session.token);
@@ -33,7 +34,7 @@ namespace AppCinema.ViewModel
                     }
                 }
                 this._Movies = new ObservableCollection<Movie>(movies);
-            });  
+            });
         }
 
         private Cinephile _Usuario;

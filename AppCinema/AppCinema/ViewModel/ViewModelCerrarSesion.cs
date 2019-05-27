@@ -1,4 +1,5 @@
 ﻿using AppCinema.View;
+using MonkeyCache.FileStore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -27,7 +28,7 @@ namespace AppCinema.ViewModel
                 ViewPrueba view2 = new ViewPrueba(); 
                 await Application.Current.MainPage.Navigation.PushModalAsync(view2);
 
-
+                Barrel.Current.EmptyAll();
 
             });
             

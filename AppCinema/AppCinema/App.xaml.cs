@@ -1,6 +1,7 @@
 ﻿using AppCinema.Base;
 using AppCinema.IoC;
 using AppCinema.View;
+using MonkeyCache.FileStore;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -21,7 +22,7 @@ namespace AppCinema
         public App()
         {
             InitializeComponent();
-
+            Barrel.ApplicationId = "CacheCinema";
             MainPage = new MasterPrincipal();
         }
 

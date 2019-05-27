@@ -1,4 +1,5 @@
 ﻿using AppCinema.Models;
+using MonkeyCache.FileStore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -63,25 +64,39 @@ namespace AppCinema.Repositories
         /// <returns></returns>
         public async Task<String> Login(String user, String password)
         {
-            using (HttpClient client = new HttpClient())
+            if (Barrel.Current.IsExpired(key: "Login") == false)
             {
-                client.BaseAddress = new Uri(this.uriApi);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(headerJson);
-                Login log = new Login(user, password);
-                String json = JsonConvert.SerializeObject(log);
-                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await client.PostAsync("api/Auth/Login", content);
-                if ((int)response.StatusCode != 200)
-                    return null;
-                else
+                //RECUPERAMOS LOS DATOS DEL CACHE POR SU KEY
+               String token = Barrel.Current.Get<String>("Login");
+                return token;
+            }//SI NO EXISTEN DATOS
+            else
+            {
+                using (HttpClient client = new HttpClient())
                 {
-                    String data = await response.Content.ReadAsStringAsync();
-                    var jObject = JObject.Parse(data);
-                    return jObject.GetValue("response").ToString();
+                    client.BaseAddress = new Uri(this.uriApi);
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(headerJson);
+                    Login log = new Login(user, password);
+                    String json = JsonConvert.SerializeObject(log);
+                    StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                    HttpResponseMessage response = await client.PostAsync("api/Auth/Login", content);
+                    if ((int)response.StatusCode != 200)
+                        return null;
+                    else
+                    {
+                        String data = await response.Content.ReadAsStringAsync();
+                        var jObject = JObject.Parse(data);
+                        String token = jObject.GetValue("response").ToString();
+                        Barrel.Current.Add(key: "Login"
+                        , data: token, expireIn: TimeSpan.FromDays(364));
 
+                        return token;
+                    }
                 }
             }
+       
+     
         }
         /// <summary>
         /// Comprueba si una pelicula está en la lista de un usuario
@@ -93,6 +108,7 @@ namespace AppCinema.Repositories
        
         public async Task<bool> CheckInList(int idMovie, String user)
         {
+
             using (HttpClient client = new HttpClient())
             {
                 client.BaseAddress = new Uri(this.uriApi);
@@ -175,11 +191,45 @@ namespace AppCinema.Repositories
         /// <returns></returns>
         public async Task<List<Lists>> GetUserList(String user,String token)
         {
-            return await CallApi<List<Lists>>("api/List/GetUserList?user=" + user,token);
+            if (Barrel.Current.IsExpired(key: "GetUserList") == false)
+            {
+                //RECUPERAMOS LOS DATOS DEL CACHE POR SU KEY
+                List<Lists> lista = Barrel.Current.Get<List<Lists>>("GetUserList");
+                return lista;
+            }//SI NO EXISTEN DATOS
+            else
+            {
+                List<Lists> lista = await CallApi<List<Lists>>("api/List/GetUserList?user=" + user, token);
+               Barrel.Current.Add(key: "GetUserList"
+                       , data: lista, expireIn: TimeSpan.FromDays(364));
+                return lista ;
+               
+                    
+                }
+            
+
+
+            
         }
         public async Task<Cinephile> GetUser(String user , String token)
         {
-            return await CallApi<Cinephile>("api/Cinephile/" + user,token);
+            if (Barrel.Current.IsExpired(key: "GetUser") == false)
+            {
+                //RECUPERAMOS LOS DATOS DEL CACHE POR SU KEY
+                Cinephile usuario = Barrel.Current.Get<Cinephile>("GetUser");
+                return usuario;
+            }//SI NO EXISTEN DATOS
+            else
+            {
+                Cinephile usuario = await CallApi<Cinephile>("api/Cinephile/" + user, token);
+                Barrel.Current.Add(key: "GetUser"
+                        , data: user, expireIn: TimeSpan.FromDays(364));
+                return usuario;
+
+
+            }
+
+             
         }
         public async Task RegisterUser(string email, string pass, string name, string lastName, int? age)
         {

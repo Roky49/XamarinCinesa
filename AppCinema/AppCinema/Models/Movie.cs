@@ -18,8 +18,13 @@ namespace AppCinema.Models
         public double VoteAverage { get; set; }
         [JsonProperty("release_date")]
         public DateTime ReleaseDate { get; set; }
+        private string _Poster;
         [JsonProperty("poster_path")]
-        public string Poster { get; set; }
+        public string Poster
+        {
+            get { return this._Poster; }
+            set { this._Poster = ImagesPath + value; }
+        }
         [JsonProperty("genres")]
         [JsonConverter(typeof(SingleOrArrayConverter<Genre>))]
         public List<Genre> Genres { get; set; }

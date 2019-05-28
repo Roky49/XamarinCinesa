@@ -7,96 +7,72 @@
         <viemodel:ViewModelPerfil/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <!--Header Background-->
-            <Image Source="" Aspect="AspectFill"/>
-            <Image Source="curvedmask.png" Aspect="Fill" 
-                       VerticalOptions="End"/>
-            <!--Profile image-->
-            <Image Source="popcorn128px.png" 
-                       VerticalOptions="End" HorizontalOptions="Center" 
-                       HeightRequest="100" 
-                       WidthRequest="100" 
-                       TranslationY="50"/>
+        <StackLayout  BackgroundColor="#292B2C">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="500"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
-                <StackLayout Grid.Row="0" Padding="0,50,0,0">
+                <Image Source="" Aspect="AspectFill"/>
+                <Image Source="curvedmask.png" Aspect="Fill" 
+                       VerticalOptions="End"/>
+                <Image Source="popcorn128px.png" 
+                       VerticalOptions="End" HorizontalOptions="Center" 
+                       HeightRequest="100" 
+                       WidthRequest="100" 
+                       TranslationY="50"/>
+                <StackLayout Grid.Row="1" Padding="0,50,0,0">
                     <Label Text="{Binding Usuario.Name}" HorizontalOptions="Center"/>
                     <Label Text="chusslp1@gmail.com" HorizontalOptions="Center"/>
                 </StackLayout>
-                <Grid Grid.Row="1" Margin="0,30" ColumnSpacing="0">
+                <Grid Grid.Row="2" Margin="0,30" ColumnSpacing="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-
-                    <StackLayout Grid.Column="0" HorizontalOptions="Center">
-
-                        <Label Text="1" HorizontalOptions="Center"/>
-                        <Label Text="Listas"/>
-                    </StackLayout>
-                    <StackLayout Grid.Column="1" HorizontalOptions="Center">
-
-                        <Label Text="4" HorizontalOptions="Center"/>
-                        <Label Text="Favoritos"/>
-                    </StackLayout>
-
                     <StackLayout Grid.Column="2" HorizontalOptions="Center">
-
                         <Label Text="3" HorizontalOptions="Center"/>
                         <Label Text="Amigos"/>
                     </StackLayout>
-
-
-                    
-
                 </Grid>
-
-                <StackLayout Grid.Row="2" BackgroundColor="#292B2C">
+                <StackLayout Grid.Row="2">
                     <Label Text="PELICULAS EN TU LISTA" TextColor="White" HorizontalOptions="Center"/>
                 </StackLayout>
+            </Grid>
+            <StackLayout>
                 <ScrollView Orientation="Horizontal">
-                    <StackLayout>
-                        <ScrollView Orientation="Horizontal">
-                            <StackLayout Orientation="Horizontal">
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="Cochazo"/>
-                                    <Image Source="http://estaticos.expansion.com/assets/multimedia/imagenes/2017/09/07/15047793665169.jpg" WidthRequest="200" HeightRequest="200"/>
-                                </StackLayout>
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="Cochazo"/>
-                                    <Image Source="http://estaticos.expansion.com/assets/multimedia/imagenes/2017/09/07/15047793665169.jpg" WidthRequest="200" HeightRequest="200"/>
-                                </StackLayout>
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="Cochazo"/>
-                                    <Image Source="http://estaticos.expansion.com/assets/multimedia/imagenes/2017/09/07/15047793665169.jpg" WidthRequest="200" HeightRequest="200"/>
-                                </StackLayout>
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="Cochazo"/>
-                                    <Image Source="http://estaticos.expansion.com/assets/multimedia/imagenes/2017/09/07/15047793665169.jpg" WidthRequest="200" HeightRequest="200"/>
-                                </StackLayout>
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="Cochazo"/>
-                                    <Image Source="http://estaticos.expansion.com/assets/multimedia/imagenes/2017/09/07/15047793665169.jpg" WidthRequest="200" HeightRequest="200"/>
-                                </StackLayout>
-                                <StackLayout Orientation="Vertical">
-                                    <Label Text="Cochazo"/>
-                                    <Image Source="http://estaticos.expansion.com/assets/multimedia/imagenes/2017/09/07/15047793665169.jpg" WidthRequest="200" HeightRequest="200"/>
-                                </StackLayout>
-                            </StackLayout>
-                        </ScrollView>
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Vertical">
+                            <Image Source="cartel.jpg" WidthRequest="200" HeightRequest="200"/>
+                            <Label Text="Cochazo"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <Image Source="cartel.jpg" WidthRequest="200" HeightRequest="200"/>
+                            <Label Text="Cochazo"/>
+                        </StackLayout> 
+                        <StackLayout Orientation="Vertical">
+                            <Image Source="cartel.jpg" WidthRequest="200" HeightRequest="200"/>
+                            <Label Text="Cochazo"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <Image Source="cartel.jpg" WidthRequest="200" HeightRequest="200"/>
+                            <Label Text="Cochazo"/>
+                        </StackLayout>  
+                        <StackLayout Orientation="Vertical">
+                            <Image Source="cartel.jpg" WidthRequest="200" HeightRequest="200"/>
+                            <Label Text="Cochazo"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <Image Source="cartel.jpg" WidthRequest="200" HeightRequest="200"/>
+                            <Label Text="Cochazo"/>
+                        </StackLayout>
+                       
                     </StackLayout>
                 </ScrollView>
-
-            </Grid>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

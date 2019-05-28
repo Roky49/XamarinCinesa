@@ -191,11 +191,21 @@ namespace AppCinema.Repositories
         /// <returns></returns>
         public async Task<List<Lists>> GetUserList(String user,String token)
         {
+            
             if (Barrel.Current.IsExpired(key: "GetUserList") == false)
             {
-                //RECUPERAMOS LOS DATOS DEL CACHE POR SU KEY
-                List<Lists> lista = Barrel.Current.Get<List<Lists>>("GetUserList");
-                return lista;
+                if (App.Locator.SessionService.token == token && App.Locator.SessionService.Name == user)
+                {
+                    //RECUPERAMOS LOS DATOS DEL CACHE POR SU KEY
+                    List<Lists> lista = Barrel.Current.Get<List<Lists>>("GetUserList");
+                    return lista;
+                }
+                else {
+                    List<Lists> lista = await CallApi<List<Lists>>("api/List/GetUserList?user=" + user, token);
+                    Barrel.Current.Add(key: "GetUserList"
+                            , data: lista, expireIn: TimeSpan.FromDays(364));
+                    return lista;
+                }
             }//SI NO EXISTEN DATOS
             else
             {
@@ -215,15 +225,23 @@ namespace AppCinema.Repositories
         {
             if (Barrel.Current.IsExpired(key: "GetUser") == false)
             {
-                //RECUPERAMOS LOS DATOS DEL CACHE POR SU KEY
-                Cinephile usuario = Barrel.Current.Get<Cinephile>("GetUser");
-                return usuario;
+                if (App.Locator.SessionService.token == token && App.Locator.SessionService.Name == user)
+                {
+                    //RECUPERAMOS LOS DATOS DEL CACHE POR SU KEY
+                    Cinephile usuario = Barrel.Current.Get<Cinephile>("GetUser");
+                    return usuario;
+                } else {
+                    Cinephile usuario = await CallApi<Cinephile>("api/Cinephile/" + user, token);
+                    Barrel.Current.Add(key: "GetUser"
+                            , data: usuario, expireIn: TimeSpan.FromDays(364));
+                    return usuario;
+                }
             }//SI NO EXISTEN DATOS
             else
             {
                 Cinephile usuario = await CallApi<Cinephile>("api/Cinephile/" + user, token);
                 Barrel.Current.Add(key: "GetUser"
-                        , data: user, expireIn: TimeSpan.FromDays(364));
+                        , data: usuario, expireIn: TimeSpan.FromDays(364));
                 return usuario;
 
 

@@ -9,9 +9,9 @@ using Xamarin.Forms;
 
 namespace AppCinema.ViewModel
 {
-    public class ViewModelLogin: ViewModelBase 
+    public class ViewModelLogin : ViewModelBase
     {
-       
+
         RepositoryCinema repo;
         SessionService session;
 
@@ -20,9 +20,9 @@ namespace AppCinema.ViewModel
         public ViewModelLogin()
         {
 
-           
+
             this.repo = new RepositoryCinema();
-            this.session =  App.Locator.SessionService;
+            this.session = App.Locator.SessionService;
 
 
         }
@@ -59,17 +59,19 @@ namespace AppCinema.ViewModel
         {
             get
             {
-                return new Command(async () => {
+                return new Command(async () =>
+                {
 
 
 
                     String token = await this.repo.Login(user, pass);
-                    if (token != null) {
+                    if (token != null)
+                    {
 
-                        Cinephile usuario = await this.repo.GetUser(user,token);
-                        
+                        Cinephile usuario = await this.repo.GetUser(user, token);
 
-                        
+
+
                         session.token = token;
                         session.Age = usuario.Age;
                         session.Email = usuario.Email;
@@ -85,6 +87,28 @@ namespace AppCinema.ViewModel
 
                 });
             }
+        }
+
+        public Command NuevoUser
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+
+
+
+                    MasterPrincipal master = new MasterPrincipal();
+                    await Application.Current.MainPage.Navigation.PushModalAsync(master);
+                    ViewRegistro view = new ViewRegistro();
+                    await Application.Current.MainPage.Navigation.PushModalAsync(view);
+                }
+
+                );
+            }
+
+
+
         }
     }
 }

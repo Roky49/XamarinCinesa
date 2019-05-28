@@ -1,20 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:viemodel="clr-namespace:AppCinema.ViewModel"
              x:Class="AppCinema.View.MasterPrincipal">
+    <MasterDetailPage.BindingContext>
+        <viemodel:ViewModelMasterPrincipal/>
+    </MasterDetailPage.BindingContext>
     <MasterDetailPage.Master>
         <ContentPage Title="Menu">
             <ContentPage.Content>
                 <StackLayout>
                     <Image HorizontalOptions="FillAndExpand" WidthRequest="80" Source="popcorn128px.png"/>
-                    <ListView RowHeight="30" x:Name="lista" >
+                    <ListView RowHeight="30" x:Name="lista" ItemsSource="{Binding menuPaginas}" >
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <Label TextColor="Black"
                                        FontSize="20"
                                        HorizontalTextAlignment="Center"
-                                       Text="{Binding Titulo}"/>
+                                       Text="{Binding menuPaginas.Titulo}"/>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>

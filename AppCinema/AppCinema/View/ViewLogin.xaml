@@ -10,7 +10,7 @@
         <StackLayout >
             <Label Text="Welcome " FontSize="50" HorizontalOptions="Center" />
             <Label Text="Cinema" TextColor="Red" FontSize="35" HorizontalOptions="Center" />
-            <Image Source="popcorn256px.png" HorizontalOptions="FillAndExpand" />
+            <Image Source="popcorn128px.png" HorizontalOptions="FillAndExpand" />
 
             <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
             <Entry Placeholder="Username" FontSize="40" HorizontalTextAlignment="Center"  Text="{Binding user}"  />
@@ -19,6 +19,7 @@
             <Entry Placeholder="Password" FontSize="40" HorizontalTextAlignment="Center"  Text="{Binding pass}" />
             </StackLayout>
             <Button Text="Login" TextColor="Red" FontSize="20" Padding="20" Command="{Binding Logueo}" />
+            <Button Text="Nuevo Usuario" TextColor="Red" FontSize="20" Padding="20" Command="{Binding NuevoUser}" />
          
         </StackLayout>
     </ContentPage.Content>

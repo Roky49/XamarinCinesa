@@ -37,7 +37,7 @@ namespace AppCinema.ViewModel
         {
             repoMovie = new RepositoryMovie();
             Task.Run(async() => {
-                this.Movie = await repoMovie.GetMovie(120);
+                this.Movie = await repoMovie.GetMovie(121);
             });
         }
     }

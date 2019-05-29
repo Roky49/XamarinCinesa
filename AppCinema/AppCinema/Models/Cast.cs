@@ -18,7 +18,12 @@ namespace AppCinema.Models
         public String Character { get; set; }
         [JsonProperty("order")]
         public int Order { get; set; }
+        private String _ProfilePath;
         [JsonProperty("profile_path")]
-        public String ProfilePath { get; set; }
+        public String ProfilePath
+        {
+            get { return this._ProfilePath; }
+            set { this._ProfilePath = "https://image.tmdb.org/t/p/w500/" + value; }
+        }
     }
 }

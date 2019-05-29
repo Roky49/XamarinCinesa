@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
              xmlns:viewmodels="clr-namespace:AppCinema.ViewModel"
              BackgroundColor="#292B2C"
              x:Class="AppCinema.View.ViewPelicula">
@@ -8,47 +9,84 @@
         <viewmodels:ViewModelPelicula/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
-            <Grid Margin="0, -20, 0, 0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150" />
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <StackLayout Grid.Column="0" Grid.Row="0"
+        <ScrollView Orientation="Vertical">
+            <StackLayout Orientation="Vertical">
+                <!--TOP GRID-->
+                <Grid Margin="0, -20, 0, 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0" Grid.Row="0"
                              HorizontalOptions="FillAndExpand" 
                              VerticalOptions="FillAndExpand" 
                              Margin="5, 48, 0, 0"
                              HeightRequest="50">
-                    <Image  Source="{Binding Movie.Poster}" />
-                </StackLayout>
-                <Grid Grid.Column="1" Grid.Row="0">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="100"/>
-                        <RowDefinition Height="100"/>
-                        <RowDefinition Height="50"/>
-                    </Grid.RowDefinitions>
-                    <Label Grid.Row="0"
-                           Margin="0, 40, 0, 0"
-                           FontSize="Large"
-                           Text="{Binding Movie.Title}" 
-                           TextColor="WhiteSmoke"/>
-                    <StackLayout Grid.Row="1" Orientation="Horizontal">
-                        <Label FontSize="Large" VerticalOptions="Center" Text="{Binding Movie.VoteAverage}" TextColor="WhiteSmoke"/>
-                        <Image Source="C:\xamarin_projects\XamarinCinesa\AppCinema\AppCinema.Android\Resources\drawable\popcorn24px.png" HeightRequest="24" />
+                        <Image  Source="{Binding Movie.Poster}" />
                     </StackLayout>
-                    <Label Grid.Row="2" VerticalOptions="Center" Text="{Binding Movie.ReleaseDate}" TextColor="WhiteSmoke" FontSize="Large"/>
+                    <Grid Grid.Column="1" Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="120"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Margin="0, 40, 0, 0" FontSize="Large" Text="{Binding Movie.Title}" TextColor="WhiteSmoke"/>
+                        <StackLayout Grid.Row="1" Orientation="Horizontal">
+                            <Label Text="Puntuación: " VerticalOptions="Start" FontSize="Large" TextColor="WhiteSmoke"/>
+                            <Label FontSize="Large" VerticalOptions="Start" Text="{Binding Movie.VoteAverage}" TextColor="WhiteSmoke"/>
+                            <Image Source="popcorn24px.png" VerticalOptions="Start" />
+                        </StackLayout>
+                        <Label Grid.Row="2" VerticalOptions="Start" Text="{Binding Movie.ReleaseDate, StringFormat='{0:dd/MM/yyyy}'}" TextColor="WhiteSmoke" FontSize="Large"/>
+                    </Grid>
                 </Grid>
-            </Grid>
-            <!--<ListView Margin="0, -60, 0, 0" ItemsSource="{Binding Genres}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Label Text="{Binding Name}" TextColor="WhiteSmoke" FontSize="Medium"/>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>-->
-            <!--<Label Text="{Binding Movie.Overview}" TextColor="WhiteSmoke" FontSize="Small"/>-->
-        </StackLayout>
+                <!--GENRES STACKLAYOUT-->
+                <StackLayout Margin="0, 30, 0, 0">
+                    <ScrollView Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Genres}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout WidthRequest="100">
+                                        <Button Text="{Binding Name}" BackgroundColor="#d9534f" TextColor="WhiteSmoke" WidthRequest="200"/>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+                <!--OVERVIEW STACKLAYOUT-->
+                <StackLayout Margin="0, 0, 0, 0">
+                    <Label Text="{Binding Movie.Overview}" TextColor="WhiteSmoke" FontSize="Small"/>
+                </StackLayout>
+                <!--CAST STACKLAYOUT-->
+                <StackLayout>
+                    <ScrollView Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Cast}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout BackgroundColor="#62676a" Padding="0, 0, 0, 0">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="30"/>
+                                                <RowDefinition Height="30"/>
+                                            </Grid.RowDefinitions>
+                                            <StackLayout Margin="0, 0, 0, 0" Grid.Row="0">
+                                                <Image Source="{Binding ProfilePath}" Aspect="Fill"/>
+                                            </StackLayout>
+                                            <Label Grid.Row="1" Text="{Binding Character}" TextColor="WhiteSmoke" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            <Label Grid.Row="2" Text="{Binding Name}" TextColor="WhiteSmoke" FontSize="Small" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+                <!--ADD MOVIE STACKLAYOUT-->
+                <StackLayout>
+                    <Button Text="Añadir a mi lista" TextColor="WhiteSmoke" BackgroundColor="#d9534f" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

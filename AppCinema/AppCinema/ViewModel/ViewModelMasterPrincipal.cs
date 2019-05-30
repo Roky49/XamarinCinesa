@@ -7,10 +7,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace AppCinema.ViewModel
 {
-    class ViewModelMasterPrincipal:ViewModelBase
+    public class ViewModelMasterPrincipal:ViewModelBase
     {
         RepositoryCinema repo;
         SessionService session;
@@ -61,9 +62,11 @@ namespace AppCinema.ViewModel
             Task.Run(  () => {
                 List<MenuPagina> menu = GetMenuPaginas();
                 this.MenuPaginas =  new ObservableCollection<MenuPagina>(menu);
-           
-          
-        });
+                
+                MessagingCenter.Subscribe<ViewModelMasterPrincipal>(this, "actualizar",  (sender) => { GetMenuPaginas(); });
+
+
+            });
 
         }
 
@@ -80,7 +83,9 @@ namespace AppCinema.ViewModel
             get { return this._menuPaginas; }
         }
 
-       
+        
+
+
 
 
     }

@@ -60,8 +60,12 @@ namespace AppCinema.View
         private void CambiarPagina(object sender, SelectedItemChangedEventArgs e)
         {
             MenuPagina sellecionado = (MenuPagina)e.SelectedItem;
+
+
+
             Detail = new NavigationPage((Page)Activator.CreateInstance(sellecionado.TipoPagina));
             IsPresented = false;
+
         }
     }
 }

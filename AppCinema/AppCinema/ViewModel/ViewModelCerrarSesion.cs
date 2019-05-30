@@ -1,4 +1,5 @@
-﻿using AppCinema.View;
+﻿using AppCinema.Base;
+using AppCinema.View;
 using MonkeyCache.FileStore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using Xamarin.Forms;
 
 namespace AppCinema.ViewModel
 {
-    public class ViewModelCerrarSesion
+    public class ViewModelCerrarSesion:ViewModelBase
     {
         public ViewModelCerrarSesion()
         {
@@ -21,17 +22,20 @@ namespace AppCinema.ViewModel
                 App.Locator.SessionService.Password = null;
                 App.Locator.SessionService.token = null;
                 App.Locator.SessionService.Age = 0 ;
+                Barrel.Current.EmptyAll();
 
                 MasterPrincipal master = new MasterPrincipal();
-                ViewModelMasterPrincipal viewModel = new ViewModelMasterPrincipal();
-
+                Xamarin.Forms.MessagingCenter.Send(App.Locator.ViewModelMasterPrincipal, "ViewModelMasterPrincipal");
+                ViewModelMasterPrincipal viewModel =  new ViewModelMasterPrincipal() ;
+              
                 master.BindingContext = viewModel;
+                OnPropertyChanged("MenuPaginas");
                 await Application.Current.MainPage.Navigation.PushModalAsync(master);
 
-                ViewPrueba view2 = new ViewPrueba(); 
-                await Application.Current.MainPage.Navigation.PushModalAsync(view2);
+                
 
-                Barrel.Current.EmptyAll();
+
+
 
             });
             

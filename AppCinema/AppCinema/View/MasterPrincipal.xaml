@@ -2,6 +2,8 @@
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:viemodel="clr-namespace:AppCinema.ViewModel"
+                  xmlns:local="clr-namespace:AppCinema"
+                  BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ViewModelMasterPrincipal}"
              x:Class="AppCinema.View.MasterPrincipal">
     <MasterDetailPage.BindingContext>
         <viemodel:ViewModelMasterPrincipal/>

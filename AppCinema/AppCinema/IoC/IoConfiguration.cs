@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 using Autofac;
 using AppCinema.Models;
-
+using AppCinema.ViewModel;
 
 namespace AppCinema.IoC
 {
     public class IoCConfiguration
     {
         //DECLARAMOS LA VARIABLE DEL CONTENEDOR
-        private IContainer container;
+        readonly IContainer container;
         public IoCConfiguration()
         {
             //CREAMOS EL CONSTRUCTOR DE CONTENEDORES
@@ -22,7 +22,8 @@ namespace AppCinema.IoC
             //POR DEFECTO, REALIZA UNA INSTANCIA POR
             //CADA PETICION
             builder.RegisterType<SessionService>().SingleInstance();
-           
+            builder.RegisterType<ViewModelMasterPrincipal>();
+
             //CONTRUIMOS EL CONTENEDOR
             this.container = builder.Build();
         }
@@ -33,6 +34,13 @@ namespace AppCinema.IoC
         {
             get { return this.container.Resolve<SessionService>(); }
         }
+
+        public ViewModelMasterPrincipal ViewModelMasterPrincipal
+        {
+            get { return container.Resolve<ViewModelMasterPrincipal>();
+            }
+        }
+
     }
 }
 

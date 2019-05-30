@@ -2,9 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:control="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+             xmlns:converters="clr-namespace:AppCinema.Converters"
              xmlns:viewmodels="clr-namespace:AppCinema.ViewModel"
              BackgroundColor="#292B2C"
              x:Class="AppCinema.View.ViewPelicula">
+    <ContentPage.Resources>
+        <converters:ConverterInvertBoolean x:Key="invertValue"/>
+    </ContentPage.Resources>
     <ContentPage.BindingContext>
         <viewmodels:ViewModelPelicula/>
     </ContentPage.BindingContext>
@@ -63,18 +67,18 @@
                         <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Cast}">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
-                                    <StackLayout BackgroundColor="#62676a" Padding="0, 0, 0, 0">
+                                    <StackLayout BackgroundColor="#494e50" Padding="0, 0, 0, 0">
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="*"/>
                                                 <RowDefinition Height="30"/>
-                                                <RowDefinition Height="30"/>
+                                                <RowDefinition Height="20"/>
                                             </Grid.RowDefinitions>
                                             <StackLayout Margin="0, 0, 0, 0" Grid.Row="0">
                                                 <Image Source="{Binding ProfilePath}" Aspect="Fill"/>
                                             </StackLayout>
-                                            <Label Grid.Row="1" Text="{Binding Character}" TextColor="WhiteSmoke" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                            <Label Grid.Row="2" Text="{Binding Name}" TextColor="WhiteSmoke" FontSize="Small" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                            <Label Grid.Row="1" Text="{Binding Name}" TextColor="WhiteSmoke" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" Margin="5, 0, 5, 0"/>
+                                            <Label Grid.Row="2" Text="{Binding Character}" TextColor="WhiteSmoke" FontSize="Small" HorizontalOptions="Center" VerticalOptions="Center" Margin="5, 0, 5, 0"/>
                                         </Grid>
                                     </StackLayout>
                                 </DataTemplate>
@@ -83,8 +87,9 @@
                     </ScrollView>
                 </StackLayout>
                 <!--ADD MOVIE STACKLAYOUT-->
-                <StackLayout>
-                    <Button Text="Añadir a mi lista" TextColor="WhiteSmoke" BackgroundColor="#d9534f" HorizontalOptions="FillAndExpand"/>
+                <StackLayout x:Name="stckAddBtn">
+                    <Button Command="{Binding AddToList}" IsVisible="{Binding InList, Converter={StaticResource invertValue}}" Text="Añadir a mi lista" TextColor="WhiteSmoke" BackgroundColor="#d9534f" HorizontalOptions="FillAndExpand"/>
+                    <Button Command="{Binding RemoveFromList}" IsVisible="{Binding InList}" Text="Retirar de mi lista" TextColor="WhiteSmoke" BackgroundColor="#d9534f" HorizontalOptions="FillAndExpand"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

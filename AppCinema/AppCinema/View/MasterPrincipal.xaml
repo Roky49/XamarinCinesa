@@ -11,14 +11,15 @@
             <ContentPage.Content>
                 <StackLayout>
                     <Image HorizontalOptions="FillAndExpand" WidthRequest="80" Source="popcorn128px.png"/>
-                    <ListView RowHeight="30" x:Name="lista" ItemsSource="{Binding menuPaginas}" >
+                    <ListView RowHeight="30" x:Name="lista" ItemsSource="{Binding MenuPaginas}" >
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
+                                    
                                     <Label TextColor="Black"
                                        FontSize="20"
                                        HorizontalTextAlignment="Center"
-                                       Text="{Binding menuPaginas.Titulo}"/>
+                                       Text="{Binding Titulo}"/>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>

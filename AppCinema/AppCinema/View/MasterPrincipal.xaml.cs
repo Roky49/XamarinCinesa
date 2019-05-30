@@ -13,7 +13,7 @@ namespace AppCinema.View
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MasterPrincipal : MasterDetailPage
     {
-        public List<MenuPagina> menuPaginas { set; get; }
+        //public List<MenuPagina> menuPaginas { set; get; }
         public MasterPrincipal()
         {
             InitializeComponent();
@@ -50,7 +50,7 @@ namespace AppCinema.View
             IsPresented = false;
 
 
-            this.lista.ItemsSource = this.menuPaginas;
+           
 
             this.lista.ItemSelected += CambiarPagina;
 

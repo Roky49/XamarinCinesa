@@ -23,6 +23,9 @@ namespace AppCinema.ViewModel
                 App.Locator.SessionService.Age = 0 ;
 
                 MasterPrincipal master = new MasterPrincipal();
+                ViewModelMasterPrincipal viewModel = new ViewModelMasterPrincipal();
+
+                master.BindingContext = viewModel;
                 await Application.Current.MainPage.Navigation.PushModalAsync(master);
 
                 ViewPrueba view2 = new ViewPrueba(); 

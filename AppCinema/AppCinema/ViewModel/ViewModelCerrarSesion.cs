@@ -24,9 +24,6 @@ namespace AppCinema.ViewModel
                 MasterPrincipal master = new MasterPrincipal();
                 await Application.Current.MainPage.Navigation.PushModalAsync(master);
 
-                ViewPrueba view2 = new ViewPrueba(); 
-                await Application.Current.MainPage.Navigation.PushModalAsync(view2);
-
 
 
             });

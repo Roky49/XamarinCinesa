@@ -10,15 +10,12 @@ using Xamarin.Forms.Xaml;
 
 namespace AppCinema.View
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MasterPrincipal : MasterDetailPage
-    {
-
-        public MasterPrincipal()
-        {
-            InitializeComponent();
-
-            Detail = new NavigationPage((Page)Activator.CreateInstance((typeof(ViewPrincipal))));
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class MasterUsuario : MasterDetailPage
+	{
+		public MasterUsuario ()
+		{
+			InitializeComponent (); Detail = new NavigationPage((Page)Activator.CreateInstance((typeof(ViewPrincipal))));
             IsPresented = false;
 
 

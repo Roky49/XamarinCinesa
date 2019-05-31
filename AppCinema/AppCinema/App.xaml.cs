@@ -22,7 +22,8 @@ namespace AppCinema
         {
             InitializeComponent();
 
-            MainPage = new MasterPrincipal();
+            //MainPage = new MasterPrincipal();
+            MainPage = new ViewBuscar();
         }
 
         protected override void OnStart()

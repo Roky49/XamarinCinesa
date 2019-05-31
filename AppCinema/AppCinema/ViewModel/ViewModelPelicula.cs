@@ -48,27 +48,42 @@ namespace AppCinema.ViewModel
                 OnPropertyChanged("Cast");
             }
         }
-        public Command AddToList()
+        public Command AddToList
         {
-            return new Command(async() => {
-                if(session.Email != null)
-                {
-                    await repoCine.AddMovieToList(Movie.ID, session.Email);
-                    await Application.Current.MainPage.DisplayAlert("Pelicula añadida a tu lista", "ejemplo", "OK");
-                }
-                else
-                {
-                    await Application.Current.MainPage.DisplayAlert("inicia sesion para añadir peliculas", "ejemplo", "OK");
-                }
-            });
+            get
+            {
+                return new Command(async () => {
+                    if (session.Email != null)
+                    {
+                        await repoCine.AddMovieToList(Movie.ID, session.Email);
+                        await Application.Current.MainPage.DisplayAlert("Pelicula añadida a tu lista", "", "OK");
+                        this.InList = await repoCine.CheckInList(Movie.ID, session.Email);
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Inicia sesion para añadir peliculas", "", "OK");
+                    }
+                });
+            }            
         }
-        public Command RemoveFromList()
+        public Command RemoveFromList
         {
-            return new Command(async () => {
-                if (session.Email != null)
-                    await repoCine.RemoveMovieFromList(Movie.ID, session.Email);
-            });
-        }
+            get
+            {
+                return new Command(async () => {
+                    if (session.Email != null)
+                    {
+                        await repoCine.RemoveMovieFromList(Movie.ID, session.Email);
+                        await Application.Current.MainPage.DisplayAlert("Pelicula retirada de tu lista", "", "OK");
+                        this.InList = await repoCine.CheckInList(Movie.ID, session.Email);
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Inicia sesion para retirar peliculas", "", "OK");
+                    }
+                });
+            }            
+        }        
         public ViewModelPelicula()
         {
             InList = false;
@@ -76,9 +91,9 @@ namespace AppCinema.ViewModel
             repoCine = new RepositoryCinema();
             session = App.Locator.SessionService;
             Task.Run(async() => {
-                this.Movie = await repoMovie.GetMovie(121);
+                this.Movie = await repoMovie.GetMovie(Movie.ID);
                 if(session.Email != null)
-                    this.InList = await repoCine.CheckInList(121, session.Email);
+                    this.InList = await repoCine.CheckInList(Movie.ID, session.Email);
             });
         }
     }

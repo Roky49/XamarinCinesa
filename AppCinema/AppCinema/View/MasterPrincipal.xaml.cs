@@ -32,7 +32,10 @@ namespace AppCinema.View
                 this.menuPaginas.Clear();
                 var page1 = new MenuPagina() { TipoPagina = typeof(ViewLogin), Titulo = "Login" };
                 this.menuPaginas.Add(page1);
-            }            
+            }
+            var movie = new MenuPagina() { TipoPagina = typeof(ViewPelicula), Titulo = "Pelicula" };
+            this.menuPaginas.Add(movie);
+
             var page2 = new MenuPagina() { TipoPagina = typeof(ViewRegistro), Titulo = "Nuevo registro" };
 
             this.menuPaginas.Add(page2);

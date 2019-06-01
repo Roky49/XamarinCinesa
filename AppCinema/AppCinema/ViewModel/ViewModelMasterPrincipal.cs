@@ -21,31 +21,23 @@ namespace AppCinema.ViewModel
 
             List<MenuPagina> menuPaginas = new List<MenuPagina>();
 
-            if (App.Locator.SessionService.token != null)
+            if (App.Locator.SessionService.token == null)
             {
-                menuPaginas.Clear();
-                var page1 = new MenuPagina() { TipoPagina = typeof(ViewPerfil), Titulo = "Hola " + App.Locator.SessionService.Name };
-                menuPaginas.Add(page1);
 
-                var userMovieList = new MenuPagina() { TipoPagina = typeof(ViewListaUsuario), Titulo = "Mi lista" };
-
-                menuPaginas.Add(userMovieList);
-                var page99 = new MenuPagina() { TipoPagina = typeof(ViewCerrarSesion), Titulo = "Cerrar Sesion" };
-                menuPaginas.Add(page99);
-            }
-            else
-            {
-                menuPaginas.Clear();
                 var page1 = new MenuPagina() { TipoPagina = typeof(ViewLogin), Titulo = "Login" };
                 menuPaginas.Add(page1);
+
+                var page2 = new MenuPagina() { TipoPagina = typeof(ViewRegistro), Titulo = "Nuevo registro" };
+
+                menuPaginas.Add(page2);
+
+                var page3 = new MenuPagina() { TipoPagina = typeof(ViewPrueba), Titulo = "Pagina de prueba" };
+                menuPaginas.Add(page3);
+
+
+                
+
             }
-            var page2 = new MenuPagina() { TipoPagina = typeof(ViewRegistro), Titulo = "Nuevo registro" };
-
-            menuPaginas.Add(page2);
-
-            var page3 = new MenuPagina() { TipoPagina = typeof(ViewPrueba), Titulo = "Pagina de prueba" };
-            menuPaginas.Add(page3);
-
 
 
             return menuPaginas;

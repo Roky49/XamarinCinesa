@@ -18,11 +18,11 @@ namespace AppCinema.View
         {
             InitializeComponent();
 
+
+
+
             Detail = new NavigationPage((Page)Activator.CreateInstance((typeof(ViewPrincipal))));
             IsPresented = false;
-
-
-
 
             this.lista.ItemSelected += CambiarPagina;
 

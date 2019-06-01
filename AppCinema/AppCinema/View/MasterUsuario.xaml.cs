@@ -15,16 +15,21 @@ namespace AppCinema.View
 	{
 		public MasterUsuario ()
 		{
-			InitializeComponent (); Detail = new NavigationPage((Page)Activator.CreateInstance((typeof(ViewPrincipal))));
+            
+
+           
+            InitializeComponent(); Detail = new NavigationPage((Page)Activator.CreateInstance((typeof(ViewPrincipal))));
             IsPresented = false;
 
 
-
+           
 
             this.lista.ItemSelected += CambiarPagina;
 
 
         }
+
+      
 
         private void CambiarPagina(object sender, SelectedItemChangedEventArgs e)
         {

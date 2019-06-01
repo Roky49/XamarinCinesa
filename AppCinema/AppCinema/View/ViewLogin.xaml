@@ -16,9 +16,9 @@
             <Entry Placeholder="Username" FontSize="40" HorizontalTextAlignment="Center"  Text="{Binding user}"  />
 
 
-            <Entry Placeholder="Password" FontSize="40" HorizontalTextAlignment="Center"  Text="{Binding pass}" />
+            <Entry Placeholder="Password" IsPassword="True" FontSize="40" HorizontalTextAlignment="Center"  Text="{Binding pass}" />
             </StackLayout>
-            <Button Text="Login" TextColor="Red" FontSize="20" Padding="20" Command="{Binding Logueo}" />
+            <Button Text="Login" Margin="80,20" TextColor="Red" FontSize="20" Padding="20" Command="{Binding Logueo}" />
          
         </StackLayout>
     </ContentPage.Content>

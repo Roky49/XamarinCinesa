@@ -61,9 +61,11 @@ namespace AppCinema.ViewModel
             {
                 return new Command(async () => {
 
-
+                    ViewEfecto efecto = new ViewEfecto();
+                    await Application.Current.MainPage.Navigation.PushModalAsync(efecto);
 
                     String token = await this.repo.Login(user, pass);
+                   
                     if (token != null) {
 
                         Cinephile usuario = await this.repo.GetUser(user,token);

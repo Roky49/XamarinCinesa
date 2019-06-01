@@ -27,12 +27,14 @@ namespace AppCinema.ViewModel
                 var page1 = new MenuPagina() { TipoPagina = typeof(ViewLogin), Titulo = "Login" };
                 menuPaginas.Add(page1);
 
+                var page3 = new MenuPagina() { TipoPagina = typeof(ViewPrincipal), Titulo = "Home" };
+                menuPaginas.Add(page3);
+
                 var page2 = new MenuPagina() { TipoPagina = typeof(ViewRegistro), Titulo = "Nuevo registro" };
 
                 menuPaginas.Add(page2);
 
-                var page3 = new MenuPagina() { TipoPagina = typeof(ViewPrueba), Titulo = "Pagina de prueba" };
-                menuPaginas.Add(page3);
+               
 
 
                 

@@ -21,11 +21,9 @@ namespace AppCinema.ViewModel
                 App.Locator.SessionService.token = null;
                 App.Locator.SessionService.Age = 0 ;
 
-                MasterPrincipal master = new MasterPrincipal();
-                await Application.Current.MainPage.Navigation.PushModalAsync(master);
+                Application.Current.MainPage = new MasterPrincipal();
 
-                ViewPrueba view2 = new ViewPrueba(); 
-                await Application.Current.MainPage.Navigation.PushModalAsync(view2);
+              
 
 
 

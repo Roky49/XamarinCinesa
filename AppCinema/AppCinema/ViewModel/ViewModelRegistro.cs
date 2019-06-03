@@ -97,9 +97,10 @@ namespace AppCinema.ViewModel
             {
                 return new Command(async () => {
 
+                    ViewEfecto efecto = new ViewEfecto();
+                    await Application.Current.MainPage.Navigation.PushModalAsync(efecto);
 
-
-                   await this.repo.RegisterUser(Email,Pass,Name,LastName,Age);
+                    await this.repo.RegisterUser(Email,Pass,Name,LastName,Age);
                     session.token = await this.repo.Login(Email, Pass);
                     session.Age = Age;
                     session.Email = Email;
@@ -108,11 +109,10 @@ namespace AppCinema.ViewModel
                     session.Name = Name;
                     session.Password = Pass;
 
-                    MasterPrincipal master = new MasterPrincipal();
+                    MasterUsuario master = new MasterUsuario();
                     await Application.Current.MainPage.Navigation.PushModalAsync(master);
 
-                    ViewPerfil view = new ViewPerfil();
-                    await Application.Current.MainPage.Navigation.PushModalAsync(view);
+                    
 
 
                 });

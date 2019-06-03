@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Autofac;
 using AppCinema.Models;
-
+using AppCinema.ViewModel;
 
 namespace AppCinema.IoC
 {
@@ -22,6 +22,7 @@ namespace AppCinema.IoC
             //POR DEFECTO, REALIZA UNA INSTANCIA POR
             //CADA PETICION
             builder.RegisterType<SessionService>().SingleInstance();
+            builder.RegisterType<ViewModelPelicula>().SingleInstance();
            
             //CONTRUIMOS EL CONTENEDOR
             this.container = builder.Build();
@@ -32,6 +33,10 @@ namespace AppCinema.IoC
         public SessionService SessionService
         {
             get { return this.container.Resolve<SessionService>(); }
+        }
+        public ViewModelPelicula ViewModelPelicula
+        {
+            get { return this.container.Resolve<ViewModelPelicula>(); }
         }
     }
 }

@@ -34,14 +34,12 @@ namespace AppCinema.ViewModel
                 {
                     //Recuperamos la pelicula
                     DiscoverMovie tappedMovie = movie as DiscoverMovie;
-                    //Creamos el viewmodel y vinculamos la pelicula
-                    
+                    //Creamos el viewmodel y vinculamos la pelicula                    
                     App.Locator.ViewModelPelicula.Movie = await repoMovie.GetMovie(tappedMovie.ID);                    
-                    //Creamos la nueva view y vinculamos el viewmodel
-                    ViewPelicula view = new ViewPelicula();
-                    view.BindingContext = App.Locator.ViewModelPelicula;
+                    //Creamos la nueva view y vinculamos el viewmodel                    
+                    App.Locator.ViewPelicula.BindingContext = App.Locator.ViewModelPelicula;
                     //Pusheamos la navegación
-                    await Application.Current.MainPage.Navigation.PushModalAsync(view);
+                    await Application.Current.MainPage.Navigation.PushModalAsync(App.Locator.ViewPelicula);
 
                 });
             }

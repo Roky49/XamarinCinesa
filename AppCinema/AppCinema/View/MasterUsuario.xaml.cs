@@ -10,24 +10,26 @@ using Xamarin.Forms.Xaml;
 
 namespace AppCinema.View
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class MasterPrincipal : MasterDetailPage
-    {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class MasterUsuario : MasterDetailPage
+	{
+		public MasterUsuario ()
+		{
+            
 
-        public MasterPrincipal()
-        {
-            InitializeComponent();
-
-
-
-
-            Detail = new NavigationPage((Page)Activator.CreateInstance((typeof(ViewPrincipal))));
+           
+            InitializeComponent(); Detail = new NavigationPage((Page)Activator.CreateInstance((typeof(ViewPrincipal))));
             IsPresented = false;
+
+
+           
 
             this.lista.ItemSelected += CambiarPagina;
 
 
         }
+
+      
 
         private void CambiarPagina(object sender, SelectedItemChangedEventArgs e)
         {

@@ -1,4 +1,5 @@
 ﻿using AppCinema.Models;
+using MonkeyCache.FileStore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -175,13 +176,47 @@ namespace AppCinema.Repositories
         /// <returns></returns>
         public async Task<List<Lists>> GetUserList(String user,String token)
         {
-            return await CallApi<List<Lists>>("api/List/GetUserList?user=" + user,token);
+            if (Barrel.Current.IsExpired(key: "GetUserList"+user) == false)
+            {
+                List<Lists> lista = Barrel.Current.Get<List<Lists>>("GetUserList"+user);
+
+                return lista;
+
+            }//SI NO EXISTEN DATOS
+            else
+            {
+                List<Lists> lista = await CallApi<List<Lists>>("api/List/GetUserList?user=" + user, token);
+                Barrel.Current.Add(key: "GetUserList" + user 
+                        , data: lista, expireIn: TimeSpan.FromHours(23));
+                return lista;
+
+
+            }
         }
 
         public async Task<Cinephile> GetUser(String user , String token)
         {
-            return await CallApi<Cinephile>("api/Cinephile/" + user,token);
+            if (Barrel.Current.IsExpired(key: "GetUser") == false)
+            {
+                Cinephile usuario = Barrel.Current.Get<Cinephile>("GetUser"+user);
+                return usuario;
+            }//SI NO EXISTEN DATOS
+            else
+            {
+                Cinephile usuario = await CallApi<Cinephile>("api/Cinephile/" + user, token);
+                Barrel.Current.Add(key: "GetUser"+user
+                        , data: usuario, expireIn: TimeSpan.FromHours(23));
+                return usuario;
+
+
+            }
         }
+
+
+
+
+
+
         public async Task RegisterUser(string email, string pass, string name, string lastName, int? age)
         {
             Cinephile newUser = new Cinephile();

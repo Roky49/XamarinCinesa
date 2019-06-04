@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:AppCinema.ViewModel"
+             BackgroundColor="#292B2C"
+             x:Name="ViewList"
+             x:Class="AppCinema.View.ViewListaUsuario">
+    <ContentPage.BindingContext>
+        <viewmodels:ViewModelListaUsuarios/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Mi lista de peliculas"
+                   TextColor="WhiteSmoke"
+                   FontSize="Large"
+                   VerticalOptions="Start" 
+                   HorizontalOptions="CenterAndExpand" />
+            <ListView ItemsSource="{Binding Movies}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding BindingContext.ShowMovieDetails, Source={x:Reference ViewList}}" CommandParameter="{Binding .}" />
+                                </StackLayout.GestureRecognizers>
+                                <Image Source="{Binding Poster}" WidthRequest="200" HeightRequest="200" />
+                                <Label Text="{Binding Title}"
+                                       TextColor="WhiteSmoke"
+                                       FontSize="Large"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

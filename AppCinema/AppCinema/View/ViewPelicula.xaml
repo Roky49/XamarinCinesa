@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
+             xmlns:converters="clr-namespace:AppCinema.Converters"
+             xmlns:viewmodels="clr-namespace:AppCinema.ViewModel"
+             xmlns:local="clr-namespace:AppCinema" BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ViewModelPelicula}"
+             BackgroundColor="#292B2C"
+             x:Class="AppCinema.View.ViewPelicula">
+    <ContentPage.Resources>
+        <converters:ConverterInvertBoolean x:Key="invertValue"/>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView Orientation="Vertical">
+            <StackLayout Orientation="Vertical">
+                <!--TOP GRID-->
+                <Grid Margin="0, -20, 0, 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0" Grid.Row="0"
+                             HorizontalOptions="FillAndExpand" 
+                             VerticalOptions="FillAndExpand" 
+                             Margin="5, 48, 0, 0"
+                             HeightRequest="50">
+                        <Image  Source="{Binding Movie.Poster}" />
+                    </StackLayout>
+                    <Grid Grid.Column="1" Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="120"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Margin="0, 40, 0, 0" FontSize="Large" Text="{Binding Movie.Title}" TextColor="WhiteSmoke"/>
+                        <StackLayout Grid.Row="1" Orientation="Horizontal">
+                            <Label Text="Puntuación: " VerticalOptions="Start" FontSize="Large" TextColor="WhiteSmoke"/>
+                            <Label FontSize="Large" VerticalOptions="Start" Text="{Binding Movie.VoteAverage}" TextColor="WhiteSmoke"/>
+                            <Image Source="popcorn24px.png" VerticalOptions="Start" />
+                        </StackLayout>
+                        <Label Grid.Row="2" VerticalOptions="Start" Text="{Binding Movie.ReleaseDate, StringFormat='{0:dd/MM/yyyy}'}" TextColor="WhiteSmoke" FontSize="Large"/>
+                    </Grid>
+                </Grid>
+                <!--GENRES STACKLAYOUT-->
+                <StackLayout Margin="0, 30, 0, 0">
+                    <ScrollView Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Genres}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout WidthRequest="100">
+                                        <Button Text="{Binding Name}" BackgroundColor="#d9534f" TextColor="WhiteSmoke" WidthRequest="200"/>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+                <!--OVERVIEW STACKLAYOUT-->
+                <StackLayout Margin="0, 0, 0, 0">
+                    <Label Text="{Binding Movie.Overview}" TextColor="WhiteSmoke" FontSize="Small"/>
+                </StackLayout>
+                <!--CAST STACKLAYOUT-->
+                <StackLayout>
+                    <ScrollView Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Horizontal" BindableLayout.ItemsSource="{Binding Cast}">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout BackgroundColor="#494e50" Padding="0, 0, 0, 0">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="30"/>
+                                                <RowDefinition Height="20"/>
+                                            </Grid.RowDefinitions>
+                                            <StackLayout Margin="0, 0, 0, 0" Grid.Row="0">
+                                                <Image Source="{Binding ProfilePath}" Aspect="Fill"/>
+                                            </StackLayout>
+                                            <Label Grid.Row="1" Text="{Binding Name}" TextColor="WhiteSmoke" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" Margin="5, 0, 5, 0"/>
+                                            <Label Grid.Row="2" Text="{Binding Character}" TextColor="WhiteSmoke" FontSize="Small" HorizontalOptions="Center" VerticalOptions="Center" Margin="5, 0, 5, 0"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </ScrollView>
+                </StackLayout>
+                <!--ADD MOVIE STACKLAYOUT-->
+                <StackLayout x:Name="stckAddBtn">
+                    <Button Command="{Binding AddToList}" IsVisible="{Binding InList, Converter={StaticResource invertValue}}" Text="Añadir a mi lista" TextColor="WhiteSmoke" BackgroundColor="#d9534f" HorizontalOptions="FillAndExpand"/>
+                    <Button Command="{Binding RemoveFromList}" IsVisible="{Binding InList}" Text="Retirar de mi lista" TextColor="WhiteSmoke" BackgroundColor="#d9534f" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

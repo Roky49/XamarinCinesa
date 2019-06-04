@@ -8,7 +8,7 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout >
-            <Label Text="registry " FontSize="50" HorizontalOptions="Center" />
+            <Label Text="Nuevo" TextColor="Red" FontSize="50" HorizontalOptions="Center" />
 
             <Image Source="popcorn24px.png" HorizontalOptions="FillAndExpand" />
 
@@ -26,7 +26,7 @@
                 
 
             </StackLayout>
-            <Button Text="New User" TextColor="Red" FontSize="20" Padding="20" Command="{Binding NewUser}" />
+            <Button Text="Crear" Margin="80,20" TextColor="Red" FontSize="20" Padding="20" Command="{Binding NewUser}" />
 
         </StackLayout>
     </ContentPage.Content>

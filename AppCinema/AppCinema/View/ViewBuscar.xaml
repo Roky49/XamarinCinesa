@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:AppCinema.ViewModel"
+             BackgroundColor="#292B2C"
+             x:Name="ViewSearch"
+             x:Class="AppCinema.View.ViewBuscar">
+    <ContentPage.BindingContext>
+        <viewmodels:ViewModelBuscar/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="lstSearch" ItemsSource="{Binding Movies}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="2" Command="{Binding BindingContext.ShowMovieDetails, Source={x:Reference ViewSearch}}" CommandParameter="{Binding .}" />
+                                </StackLayout.GestureRecognizers>
+                                <Image Source="{Binding PosterPath}" WidthRequest="200" HeightRequest="200" Margin="0, 0, 0, 0" />
+                                <Label Text="{Binding Title}"
+                                       HorizontalOptions="Start"
+                                       TextColor="WhiteSmoke"
+                                       FontSize="Large"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

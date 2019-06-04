@@ -31,7 +31,7 @@ namespace AppCinema.ViewModel
                 return new Command(async (movie) =>
                 {
                     //Recuperamos la pelicula
-                    DiscoverMovie tappedMovie = movie as DiscoverMovie;
+                    Movie tappedMovie = movie as Movie;
                     //Creamos el viewmodel y vinculamos la pelicula                    
                     App.Locator.ViewModelPelicula.Movie = await repoMovie.GetMovie(tappedMovie.ID);
                     //Creamos la nueva view y vinculamos el viewmodel                    

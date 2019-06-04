@@ -3,19 +3,76 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viemodel="clr-namespace:AppCinema.ViewModel"
              x:Class="AppCinema.View.ViewPerfil">
-
     <ContentPage.BindingContext>
         <viemodel:ViewModelPerfil/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Label FontSize="30" HorizontalTextAlignment="Center"  Text="{Binding Usuario.Email}"  />
-            <Label  FontSize="30" HorizontalTextAlignment="Center"  Text="{Binding Usuario.Pass}" />
-            <Label  FontSize="30" HorizontalTextAlignment="Center"  Text="{Binding Usuario.Name}"  />
-            <Label  FontSize="30" HorizontalTextAlignment="Center"  Text="{Binding Usuario.LastName}"  />
-            <Label  FontSize="30" HorizontalTextAlignment="Center"  Text="{Binding Usuario.Age}"  />
-            <Image  Source="{Binding Usuario.Image}" HorizontalOptions="Center" />
-
+        <StackLayout  BackgroundColor="#292B2C">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Image Source="" Aspect="AspectFill"/>
+                <Image Source="curvedmask.png" Aspect="Fill" 
+                       VerticalOptions="End"/>
+                <Image Source="popcorn128px.png" 
+                       VerticalOptions="End" HorizontalOptions="Center" 
+                       HeightRequest="100" 
+                       WidthRequest="100" 
+                       TranslationY="50"/>
+                <StackLayout Grid.Row="1" Padding="0,50,0,0">
+                    <Label Text="{Binding Usuario.Name}" HorizontalOptions="Center"/>
+                    <Label Text="chusslp1@gmail.com" HorizontalOptions="Center"/>
+                </StackLayout>
+                <Grid Grid.Row="2" Margin="0,30" ColumnSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="2" HorizontalOptions="Center">
+                        <Label Text="3" HorizontalOptions="Center"/>
+                        <Label Text="Amigos"/>
+                    </StackLayout>
+                </Grid>
+                <StackLayout Grid.Row="2">
+                    <Label Text="PELICULAS EN TU LISTA" TextColor="White" HorizontalOptions="Center"/>
+                </StackLayout>
+            </Grid>
+            <StackLayout>
+                <ScrollView Orientation="Horizontal">
+                    <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Vertical">
+                            <Image Source="cartel.jpg" WidthRequest="200" HeightRequest="200"/>
+                            <Label Text="Cochazo"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <Image Source="cartel.jpg" WidthRequest="200" HeightRequest="200"/>
+                            <Label Text="Cochazo"/>
+                        </StackLayout> 
+                        <StackLayout Orientation="Vertical">
+                            <Image Source="cartel.jpg" WidthRequest="200" HeightRequest="200"/>
+                            <Label Text="Cochazo"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <Image Source="cartel.jpg" WidthRequest="200" HeightRequest="200"/>
+                            <Label Text="Cochazo"/>
+                        </StackLayout>  
+                        <StackLayout Orientation="Vertical">
+                            <Image Source="cartel.jpg" WidthRequest="200" HeightRequest="200"/>
+                            <Label Text="Cochazo"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Vertical">
+                            <Image Source="cartel.jpg" WidthRequest="200" HeightRequest="200"/>
+                            <Label Text="Cochazo"/>
+                        </StackLayout>
+                       
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

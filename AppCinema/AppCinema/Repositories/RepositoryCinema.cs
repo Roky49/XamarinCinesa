@@ -193,6 +193,7 @@ namespace AppCinema.Repositories
 
             }
         }
+
         public async Task<Cinephile> GetUser(String user , String token)
         {
             if (Barrel.Current.IsExpired(key: "GetUser") == false)

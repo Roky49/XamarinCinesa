@@ -23,6 +23,7 @@
                        " TextColor="Red" FontSize="20"/>
 
 
+                
 
             </StackLayout>
             <Button Text="Crear" Margin="80,20" TextColor="Red" FontSize="20" Padding="20" Command="{Binding NewUser}" />

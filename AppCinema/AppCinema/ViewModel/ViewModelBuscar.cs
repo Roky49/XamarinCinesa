@@ -1,6 +1,7 @@
 ﻿using AppCinema.Base;
 using AppCinema.Models;
 using AppCinema.Repositories;
+using AppCinema.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,12 +11,13 @@ using Xamarin.Forms;
 
 namespace AppCinema.ViewModel
 {
-    public class ViewModelListaUsuarios : ViewModelBase
+    public class ViewModelBuscar : ViewModelBase
     {
-        RepositoryCinema repoCine;
         RepositoryMovie repoMovie;
-        private ObservableCollection<Movie> _Movies;
-        public ObservableCollection<Movie> Movies
+        private ObservableCollection<DiscoverMovie> _Movies;
+        private object e;
+
+        public ObservableCollection<DiscoverMovie> Movies
         {
             get { return this._Movies; }
             set
@@ -33,7 +35,7 @@ namespace AppCinema.ViewModel
                     //Recuperamos la pelicula
                     DiscoverMovie tappedMovie = movie as DiscoverMovie;
                     //Creamos el viewmodel y vinculamos la pelicula                    
-                    App.Locator.ViewModelPelicula.Movie = await repoMovie.GetMovie(tappedMovie.ID);
+                    App.Locator.ViewModelPelicula.Movie = await repoMovie.GetMovie(tappedMovie.ID);                    
                     //Creamos la nueva view y vinculamos el viewmodel                    
                     App.Locator.ViewPelicula.BindingContext = App.Locator.ViewModelPelicula;
                     //Pusheamos la navegación
@@ -42,22 +44,12 @@ namespace AppCinema.ViewModel
                 });
             }
         }
-        public ViewModelListaUsuarios()
+        public ViewModelBuscar()
         {
-            repoCine = new RepositoryCinema();
             repoMovie = new RepositoryMovie();
-            SessionService session = App.Locator.SessionService;
             Task.Run(async() => {
-                List<Lists> listMovies = await repoCine.GetUserList(session.Email, session.token);
-                List<Movie> movies = new List<Movie>();
-                if (listMovies != null)
-                {
-                    foreach (Lists lItem in listMovies)
-                    {
-                        movies.Add(await repoMovie.GetMovie(lItem.IdMovie));
-                    }
-                }
-                this.Movies = new ObservableCollection<Movie>(movies);
+                DiscoverMovieRequest request = await repoMovie.SearchMovie("avengers");
+                this.Movies = new ObservableCollection<DiscoverMovie>(request.Movies);
             });
         }
     }

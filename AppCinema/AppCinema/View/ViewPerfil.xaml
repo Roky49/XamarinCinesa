@@ -10,9 +10,9 @@
         <StackLayout  BackgroundColor="#292B2C">
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Image Source="" Aspect="AspectFill"/>

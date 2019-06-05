@@ -67,6 +67,7 @@ namespace AppCinema.ViewModel
                         await repoCine.AddMovieToList(Movie.ID, session.Email);
                         await Application.Current.MainPage.DisplayAlert("Pelicula añadida a tu lista", "", "OK");
                         this.InList = await repoCine.CheckInList(Movie.ID, session.Email);
+                        MessagingCenter.Send<ViewModelListaUsuarios>(App.Locator.ViewModelListaUsuarios, "RELOAD");
                     }
                     else
                     {
@@ -85,6 +86,7 @@ namespace AppCinema.ViewModel
                         await repoCine.RemoveMovieFromList(Movie.ID, session.Email);
                         await Application.Current.MainPage.DisplayAlert("Pelicula retirada de tu lista", "", "OK");
                         this.InList = await repoCine.CheckInList(Movie.ID, session.Email);
+                        MessagingCenter.Send<ViewModelListaUsuarios>(App.Locator.ViewModelListaUsuarios, "RELOAD");
                     }
                     else
                     {

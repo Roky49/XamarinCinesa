@@ -15,6 +15,7 @@ namespace AppCinema.ViewModel
     {
         RepositoryCinema repoCine;
         RepositoryMovie repoMovie;
+        SessionService session;
         private ObservableCollection<Movie> _Movies;
         public ObservableCollection<Movie> Movies
         {
@@ -46,19 +47,26 @@ namespace AppCinema.ViewModel
         {
             repoCine = new RepositoryCinema();
             repoMovie = new RepositoryMovie();
-            SessionService session = App.Locator.SessionService;
+            session = App.Locator.SessionService;
             Task.Run(async() => {
-                List<Lists> listMovies = await repoCine.GetUserList(session.Email, session.token);
-                List<Movie> movies = new List<Movie>();
-                if (listMovies != null)
-                {
-                    foreach (Lists lItem in listMovies)
-                    {
-                        movies.Add(await repoMovie.GetMovie(lItem.IdMovie));
-                    }
-                }
-                this.Movies = new ObservableCollection<Movie>(movies);
+                await this.LoadList();
             });
+            MessagingCenter.Subscribe<ViewModelListaUsuarios>(this, "RELOAD", async (sender) => {
+                await this.LoadList();
+            });
+        }
+        private async Task LoadList()
+        {
+            List<Lists> listMovies = await repoCine.GetUserList(session.Email, session.token);
+            List<Movie> movies = new List<Movie>();
+            if (listMovies != null)
+            {
+                foreach (Lists lItem in listMovies)
+                {
+                    movies.Add(await repoMovie.GetMovie(lItem.IdMovie));
+                }
+            }
+            this.Movies = new ObservableCollection<Movie>(movies);
         }
     }
 }

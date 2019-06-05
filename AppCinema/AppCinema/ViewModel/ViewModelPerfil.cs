@@ -6,34 +6,39 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace AppCinema.ViewModel
 {
     public class ViewModelPerfil:ViewModelBase
     {
         RepositoryCinema repo;
-        RepositoryMovie repomovie;
+        
+        RepositoryMovie repoMovie;
 
         public ViewModelPerfil()
         {
             this.repo = new RepositoryCinema();
 
+            this.repoMovie = new RepositoryMovie();
+            this.repo = new RepositoryCinema();
+            
             //App.Locator.SessionService.Datos.
             SessionService session = App.Locator.SessionService;
             Task.Run(async () =>
             {
                 this.Usuario = await this.repo.GetUser(session.Email, session.token);
-                this.Movie = await this.repo.GetUserList(session.Email, session.token);
-                List<Lists> listMovies = await this.repo.GetUserList(session.Email, session.token);
+                List<Lists> listMovies = await repo.GetUserList(session.Email, session.token);
                 List<Movie> movies = new List<Movie>();
                 if (listMovies != null)
                 {
                     foreach (Lists lItem in listMovies)
                     {
-                        movies.Add(await this.repomovie.GetMovie(lItem.IdMovie));
+                        movies.Add(await repoMovie.GetMovie(lItem.IdMovie));
                     }
                 }
-                this._Movies = new ObservableCollection<Movie>(movies);
+                this.Movies = new ObservableCollection<Movie>(movies);
+
             });
         }
 
@@ -49,30 +54,35 @@ namespace AppCinema.ViewModel
 
             get { return this._Usuario; }
         }
-
-        private List<Lists> _Movie;
-
-        public List<Lists> Movie
-        {
-            set
-            {
-                this._Movie = value;
-                OnPropertyChanged("Movie");
-            }
-
-            get { return this._Movie; }
-        }
-
         private ObservableCollection<Movie> _Movies;
         public ObservableCollection<Movie> Movies
         {
+            get { return this._Movies; }
             set
             {
                 this._Movies = value;
                 OnPropertyChanged("Movies");
             }
-
-            get { return this._Movies; }
         }
+        public Command ShowMovieDetails
+        {
+            get
+            {
+                return new Command(async (movie) =>
+                {
+                    //Recuperamos la pelicula
+                    Movie tappedMovie = movie as Movie;
+                    //Creamos el viewmodel y vinculamos la pelicula                    
+                    App.Locator.ViewModelPelicula.Movie = await repoMovie.GetMovie(tappedMovie.ID);
+                    //Creamos la nueva view y vinculamos el viewmodel                    
+                    App.Locator.ViewPelicula.BindingContext = App.Locator.ViewModelPelicula;
+                    //Pusheamos la navegación
+                    await Application.Current.MainPage.Navigation.PushModalAsync(App.Locator.ViewPelicula);
+
+                });
+            }
+        }
+      
+
     }
 }

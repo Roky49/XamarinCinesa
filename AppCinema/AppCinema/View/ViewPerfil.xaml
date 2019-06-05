@@ -2,12 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viemodel="clr-namespace:AppCinema.ViewModel"
+             BackgroundColor="#292B2C"
              x:Class="AppCinema.View.ViewPerfil">
     <ContentPage.BindingContext>
         <viemodel:ViewModelPerfil/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout  BackgroundColor="#292B2C">
+        <StackLayout>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="200"/>
@@ -15,17 +16,15 @@
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Image Source="" Aspect="AspectFill"/>
-                <Image Source="curvedmask.png" Aspect="Fill" 
-                       VerticalOptions="End"/>
-                <Image Source="popcorn128px.png" 
-                       VerticalOptions="End" HorizontalOptions="Center" 
+                <Image Source="{Binding Usuario.Image}"
+                VerticalOptions="End" HorizontalOptions="Center" 
                        HeightRequest="100" 
                        WidthRequest="100" 
                        TranslationY="50"/>
                 <StackLayout Grid.Row="1" Padding="0,50,0,0">
-                    <Label Text="{Binding Usuario.Name}" HorizontalOptions="Center"/>
-                    <Label Text="chusslp1@gmail.com" HorizontalOptions="Center"/>
+                    <Label Text="{Binding Usuario.Name}" FontSize="40" TextColor="White" HorizontalOptions="Center"/>
+                    <Label Text="{Binding Usuario.LastName}" FontSize="30" TextColor="White" HorizontalOptions="Center"/>
+                    
                 </StackLayout>
                 <Grid Grid.Row="2" Margin="0,30" ColumnSpacing="0">
                     <Grid.ColumnDefinitions>
@@ -38,40 +37,26 @@
                         <Label Text="Amigos"/>
                     </StackLayout>
                 </Grid>
-                <StackLayout Grid.Row="2">
-                    <Label Text="PELICULAS EN TU LISTA" TextColor="White" HorizontalOptions="Center"/>
-                </StackLayout>
+              
             </Grid>
             <StackLayout>
-                <ScrollView Orientation="Horizontal">
-                    <StackLayout Orientation="Horizontal">
-                        <StackLayout Orientation="Vertical">
-                            <Image Source="cartel.jpg" WidthRequest="200" HeightRequest="200"/>
-                            <Label Text="Cochazo"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Vertical">
-                            <Image Source="cartel.jpg" WidthRequest="200" HeightRequest="200"/>
-                            <Label Text="Cochazo"/>
-                        </StackLayout> 
-                        <StackLayout Orientation="Vertical">
-                            <Image Source="cartel.jpg" WidthRequest="200" HeightRequest="200"/>
-                            <Label Text="Cochazo"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Vertical">
-                            <Image Source="cartel.jpg" WidthRequest="200" HeightRequest="200"/>
-                            <Label Text="Cochazo"/>
-                        </StackLayout>  
-                        <StackLayout Orientation="Vertical">
-                            <Image Source="cartel.jpg" WidthRequest="200" HeightRequest="200"/>
-                            <Label Text="Cochazo"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Vertical">
-                            <Image Source="cartel.jpg" WidthRequest="200" HeightRequest="200"/>
-                            <Label Text="Cochazo"/>
-                        </StackLayout>
-                       
-                    </StackLayout>
-                </ScrollView>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition  Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Edad " FontSize="30" TextColor="White" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center"/>
+                    <Label FontSize="30" Grid.Row="0" Grid.Column="1" Text="{Binding Usuario.Age}" TextColor="White" HorizontalOptions="Center"/>
+                    <Label Text="Email " Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" FontSize="30" TextColor="White"/>
+                    <Label FontSize="Small" Grid.Row="1" Grid.Column="1" Text="{Binding Usuario.Email}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+           
+                </Grid>
+               
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

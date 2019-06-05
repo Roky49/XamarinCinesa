@@ -89,11 +89,7 @@ namespace AppCinema.ViewModel
             InList = false;
             repoMovie = new RepositoryMovie();
             repoCine = new RepositoryCinema();
-            session = App.Locator.SessionService;
-            Task.Run(async() => {                
-                if(session.Email != null)
-                    this.InList = await repoCine.CheckInList(this.Movie.ID, session.Email);
-            });
+            session = App.Locator.SessionService;            
         }
     }
 }

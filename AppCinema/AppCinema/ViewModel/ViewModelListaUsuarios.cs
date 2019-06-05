@@ -30,21 +30,13 @@ namespace AppCinema.ViewModel
             get
             {
                 return new Command(async (movie) =>
-                {
-                    //Recuperamos la pelicula
-                    Movie tappedMovie = movie as Movie;
-                    //Creamos el viewmodel y vinculamos la pelicula   
+                {                    
+                    Movie tappedMovie = movie as Movie;                    
                     ViewModelPelicula viewmodel = new ViewModelPelicula();
                     viewmodel.Movie = await repoMovie.GetMovie(tappedMovie.ID);
                     ViewPelicula view = new ViewPelicula();
-                    view.BindingContext = viewmodel;
-                    //App.Locator.ViewModelPelicula.Movie = await repoMovie.GetMovie(tappedMovie.ID);
-                    //App.Locator.ViewModelPelicula.InList = await repoCine.CheckInList(tappedMovie.ID, App.Locator.SessionService.Email);
-                    //Creamos la nueva view y vinculamos el viewmodel                    
-                    //App.Locator.ViewPelicula.BindingContext = App.Locator.ViewModelPelicula;
-
-
-                    //Pusheamos la navegación
+                    viewmodel.InList = await repoCine.CheckInList(tappedMovie.ID, App.Locator.SessionService.Email);
+                    view.BindingContext = viewmodel;                    
                     await Application.Current.MainPage.Navigation.PushModalAsync(view);
 
                 });

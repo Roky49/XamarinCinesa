@@ -22,6 +22,7 @@ namespace AppCinema.Repositories
         {
             uriApi = "https://cinemaparadisoapiasr.azurewebsites.net/";
             headerJson = new MediaTypeWithQualityHeaderValue("application/json");
+            this.token = App.Locator.SessionService.token;
         }
         /// <summary>
         /// Llamada genérica a la API de usuarios

@@ -34,6 +34,7 @@ namespace AppCinema.ViewModel
                     Movie tappedMovie = movie as Movie;
                     //Creamos el viewmodel y vinculamos la pelicula                    
                     App.Locator.ViewModelPelicula.Movie = await repoMovie.GetMovie(tappedMovie.ID);
+                    App.Locator.ViewModelPelicula.InList = await repoCine.CheckInList(tappedMovie.ID, App.Locator.SessionService.Email);
                     //Creamos la nueva view y vinculamos el viewmodel                    
                     App.Locator.ViewPelicula.BindingContext = App.Locator.ViewModelPelicula;
                     //Pusheamos la navegación

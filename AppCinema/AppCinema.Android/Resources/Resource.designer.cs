@@ -5008,12 +5008,6 @@ namespace AppCinema.Droid
 			// aapt resource value: 0x7f02012a
 			public const int notification_bg_normal_pressed = 2130837802;
 			
-			// aapt resource value: 0x7f020136
-			public const int notification_template_icon_bg = 2130837814;
-			
-			// aapt resource value: 0x7f020137
-			public const int notification_template_icon_low_bg = 2130837815;
-			
 			// aapt resource value: 0x7f02012b
 			public const int notification_icon_background = 2130837803;
 			

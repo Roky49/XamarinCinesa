@@ -2,13 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viemodel="clr-namespace:AppCinema.ViewModel"
+             BackgroundColor="#292B2C"
              x:Class="AppCinema.View.ViewPerfil">
-
     <ContentPage.BindingContext>
         <viemodel:ViewModelPerfil/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout  BackgroundColor="#292B2C">
+        <StackLayout>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="200"/>
@@ -16,10 +16,7 @@
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Image Source="" Aspect="AspectFill"/>
-                <Image Source="curvedmask.png" Aspect="Fill" 
-                       VerticalOptions="End"/>
-                <Image Source="{ Binding Usuario.Image}"
+                <Image Source="{Binding Usuario.Image}"
                 VerticalOptions="End" HorizontalOptions="Center" 
                        HeightRequest="100" 
                        WidthRequest="100" 
@@ -56,7 +53,7 @@
                     <Label Text="Edad " FontSize="30" TextColor="White" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center"/>
                     <Label FontSize="30" Grid.Row="0" Grid.Column="1" Text="{Binding Usuario.Age}" TextColor="White" HorizontalOptions="Center"/>
                     <Label Text="Email " Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" FontSize="30" TextColor="White"/>
-                    <Label FontSize="30" Grid.Row="1" Grid.Column="1" Text="{Binding Usuario.Email}" TextColor="White" HorizontalOptions="Center"/>
+                    <Label FontSize="Small" Grid.Row="1" Grid.Column="1" Text="{Binding Usuario.Email}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
            
                 </Grid>
                

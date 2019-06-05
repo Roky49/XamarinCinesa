@@ -181,4 +181,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\cartel.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\andres.png" />
+  </ItemGroup>
 </Project>

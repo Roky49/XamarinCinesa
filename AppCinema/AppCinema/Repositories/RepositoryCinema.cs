@@ -141,6 +141,14 @@ namespace AppCinema.Repositories
                 String json = JsonConvert.SerializeObject(movie);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await client.PostAsync("api/List/AddMovieToList/", content);
+                if (response.StatusCode.Equals(HttpStatusCode.OK))
+                    client.DefaultRequestHeaders.Accept.Clear();
+                else if (response.StatusCode.Equals(HttpStatusCode.Unauthorized))
+                    client.DefaultRequestHeaders.Accept.Clear();
+                else if (response.StatusCode.Equals(HttpStatusCode.NotFound))
+                    client.DefaultRequestHeaders.Accept.Clear();
+                else
+                    client.DefaultRequestHeaders.Accept.Clear();
             }
         }
         /// <summary>
@@ -168,6 +176,14 @@ namespace AppCinema.Repositories
                 String json = JsonConvert.SerializeObject(movie);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
                 HttpResponseMessage response = await client.PostAsync("api/List/RemoveMovieFromList/", content);
+                if (response.StatusCode.Equals(HttpStatusCode.OK))
+                    client.DefaultRequestHeaders.Accept.Clear();
+                else if (response.StatusCode.Equals(HttpStatusCode.Unauthorized))
+                    client.DefaultRequestHeaders.Accept.Clear();
+                else if (response.StatusCode.Equals(HttpStatusCode.NotFound))
+                    client.DefaultRequestHeaders.Accept.Clear();
+                else
+                    client.DefaultRequestHeaders.Accept.Clear();
             }
         }
         /// <summary>
@@ -175,24 +191,9 @@ namespace AppCinema.Repositories
         /// </summary>
         /// <param name="user">String. El email del usuario</param>
         /// <returns></returns>
-        public async Task<List<Lists>> GetUserList(String user,String token)
+        public async Task<List<Lists>> GetUserList(String user, String token)
         {
-            if (Barrel.Current.IsExpired(key: "GetUserList"+user) == false)
-            {
-                List<Lists> lista = Barrel.Current.Get<List<Lists>>("GetUserList"+user);
-
-                return lista;
-
-            }//SI NO EXISTEN DATOS
-            else
-            {
-                List<Lists> lista = await CallApi<List<Lists>>("api/List/GetUserList?user=" + user, token);
-                Barrel.Current.Add(key: "GetUserList" + user 
-                        , data: lista, expireIn: TimeSpan.FromHours(23));
-                return lista;
-
-
-            }
+            return await CallApi<List<Lists>>("api/List/GetUserList?user=" + user, token);                            
         }
 
         public async Task<Cinephile> GetUser(String user , String token)

@@ -15,7 +15,16 @@ namespace AppCinema.ViewModel
         RepositoryMovie repoMovie;
         RepositoryCinema repoCine;
         SessionService session;
-        public bool InList { get; set; }
+        private bool _InList;
+        public bool InList
+        {
+            get { return this._InList; }
+            set
+            {
+                this._InList = value;
+                OnPropertyChanged("InList");
+            }
+        }
         private Movie _Movie;
         public Movie Movie
         {

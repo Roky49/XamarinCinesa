@@ -7,18 +7,19 @@
         <viewmodelogin:ViewModelLogin/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout >
-            <Label Text="Welcome " FontSize="50" HorizontalOptions="Center" />
-            <Label Text="Cinema" TextColor="Red" FontSize="35" HorizontalOptions="Center" />
-            <Image Source="popcorn256px.png" HorizontalOptions="FillAndExpand" />
+        <StackLayout BackgroundColor="#292B2C" >
+            <Image Margin="0,100,0,0" Source="popcorn128px.png" HorizontalOptions="FillAndExpand" />
+            <Label Text="Cinema Paradiso" TextColor="White" FontSize="25" HorizontalOptions="Center" />
 
-            <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand">
-            <Entry Placeholder="Username" FontSize="40" HorizontalTextAlignment="Center"  Text="{Binding user}"  />
+            <StackLayout Orientation="Vertical" VerticalOptions="CenterAndExpand" Margin="30,30,30,30">
+                <Entry BackgroundColor="Transparent" Placeholder="Email" PlaceholderColor="White" FontSize="22" HorizontalTextAlignment="Center" TextColor="White" Text="{Binding user}"  />
 
 
-            <Entry Placeholder="Password" IsPassword="True" FontSize="40" HorizontalTextAlignment="Center"  Text="{Binding pass}" />
+                <Entry  BackgroundColor="Transparent" Placeholder="Password" IsPassword="True"  PlaceholderColor="White" FontSize="22"  TextColor="White" HorizontalTextAlignment="Center"  Text="{Binding pass}" />
             </StackLayout>
-            <Button Text="Login" Margin="80,20" TextColor="Red" FontSize="20" Padding="20" Command="{Binding Logueo}" />
+
+            <Button Text="iniciar sesión"  Margin="50,30" TextColor="White" BackgroundColor="#D9534F" FontSize="15" CornerRadius="30" Command="{Binding Logueo}" />
+            
          
         </StackLayout>
     </ContentPage.Content>

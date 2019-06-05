@@ -1,6 +1,7 @@
 ﻿using AppCinema.Base;
 using AppCinema.Models;
 using AppCinema.Repositories;
+using AppCinema.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -32,13 +33,19 @@ namespace AppCinema.ViewModel
                 {
                     //Recuperamos la pelicula
                     Movie tappedMovie = movie as Movie;
-                    //Creamos el viewmodel y vinculamos la pelicula                    
-                    App.Locator.ViewModelPelicula.Movie = await repoMovie.GetMovie(tappedMovie.ID);
-                    App.Locator.ViewModelPelicula.InList = await repoCine.CheckInList(tappedMovie.ID, App.Locator.SessionService.Email);
+                    //Creamos el viewmodel y vinculamos la pelicula   
+                    ViewModelPelicula viewmodel = new ViewModelPelicula();
+                    viewmodel.Movie = await repoMovie.GetMovie(tappedMovie.ID);
+                    ViewPelicula view = new ViewPelicula();
+                    view.BindingContext = viewmodel;
+                    //App.Locator.ViewModelPelicula.Movie = await repoMovie.GetMovie(tappedMovie.ID);
+                    //App.Locator.ViewModelPelicula.InList = await repoCine.CheckInList(tappedMovie.ID, App.Locator.SessionService.Email);
                     //Creamos la nueva view y vinculamos el viewmodel                    
-                    App.Locator.ViewPelicula.BindingContext = App.Locator.ViewModelPelicula;
+                    //App.Locator.ViewPelicula.BindingContext = App.Locator.ViewModelPelicula;
+
+
                     //Pusheamos la navegación
-                    await Application.Current.MainPage.Navigation.PushModalAsync(App.Locator.ViewPelicula);
+                    await Application.Current.MainPage.Navigation.PushModalAsync(view);
 
                 });
             }

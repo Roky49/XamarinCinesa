@@ -61,10 +61,10 @@ namespace AppCinema.ViewModel
             {
                 return new Command(async () => {
 
-                    ViewEfecto efecto = new ViewEfecto();
-                    await Application.Current.MainPage.Navigation.PushModalAsync(efecto);
+                    Application.Current.MainPage = new ViewEfecto();
+                    
 
-                    String token = await this.repo.Login(user, pass);
+                    String token = session.token; 
                    
                     if (token != null) {
 
@@ -81,7 +81,32 @@ namespace AppCinema.ViewModel
                         session.Password = usuario.Password;
                         MasterUsuario master = new MasterUsuario();
                         await Application.Current.MainPage.Navigation.PushModalAsync(master);
-                        
+
+                    }
+                    else
+                    {
+                        token = await this.repo.Login(user, pass);
+
+                        if (token != null) { 
+
+                            Cinephile usuario = await this.repo.GetUser(user, token);
+
+                        session.token = token;
+                            session.Age = usuario.Age;
+                            session.Email = usuario.Email;
+                            session.Image = usuario.Image;
+                            session.LastName = usuario.LastName;
+                            session.Name = usuario.Name;
+                            session.Password = usuario.Password;
+                            MasterUsuario master = new MasterUsuario();
+                            await Application.Current.MainPage.Navigation.PushModalAsync(master);
+                        }
+                        else
+                        {
+                            ViewLogin master = new ViewLogin();
+                            await Application.Current.MainPage.Navigation.PushModalAsync(master);
+                        }
+
                     }
 
                 });

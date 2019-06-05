@@ -97,8 +97,7 @@ namespace AppCinema.ViewModel
             {
                 return new Command(async () => {
 
-                    ViewEfecto efecto = new ViewEfecto();
-                    await Application.Current.MainPage.Navigation.PushModalAsync(efecto);
+                    Application.Current.MainPage = new ViewEfecto(); 
 
                     await this.repo.RegisterUser(Email,Pass,Name,LastName,Age);
                     session.token = await this.repo.Login(Email, Pass);

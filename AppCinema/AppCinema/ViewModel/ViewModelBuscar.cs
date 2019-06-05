@@ -15,7 +15,7 @@ namespace AppCinema.ViewModel
     {
         RepositoryMovie repoMovie;
         private ObservableCollection<DiscoverMovie> _Movies;
-        private object e;
+        public String CadenaBuscar;
 
         public ObservableCollection<DiscoverMovie> Movies
         {
@@ -48,7 +48,7 @@ namespace AppCinema.ViewModel
         {
             repoMovie = new RepositoryMovie();
             Task.Run(async() => {
-                DiscoverMovieRequest request = await repoMovie.SearchMovie("avengers");
+                DiscoverMovieRequest request = await repoMovie.SearchMovie(CadenaBuscar);
                 this.Movies = new ObservableCollection<DiscoverMovie>(request.Movies);
             });
         }

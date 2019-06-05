@@ -19,8 +19,8 @@
                 <Image Source="" Aspect="AspectFill"/>
                 <Image Source="curvedmask.png" Aspect="Fill" 
                        VerticalOptions="End"/>
-                <Image Source="popcorn128px.png" 
-                       VerticalOptions="End" HorizontalOptions="Center" 
+                <Image Source="{ Binding Usuario.Image}"
+                VerticalOptions="End" HorizontalOptions="Center" 
                        HeightRequest="100" 
                        WidthRequest="100" 
                        TranslationY="50"/>
@@ -53,9 +53,9 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition  Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Label Text="Edad : " FontSize="30" TextColor="White" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center"/>
+                    <Label Text="Edad " FontSize="30" TextColor="White" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center"/>
                     <Label FontSize="30" Grid.Row="0" Grid.Column="1" Text="{Binding Usuario.Age}" TextColor="White" HorizontalOptions="Center"/>
-                    <Label Text="Email : " Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" FontSize="30" TextColor="White"/>
+                    <Label Text="Email " Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" FontSize="30" TextColor="White"/>
                     <Label FontSize="30" Grid.Row="1" Grid.Column="1" Text="{Binding Usuario.Email}" TextColor="White" HorizontalOptions="Center"/>
            
                 </Grid>

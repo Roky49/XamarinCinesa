@@ -23,8 +23,7 @@ namespace AppCinema.IoC
             //POR DEFECTO, REALIZA UNA INSTANCIA POR
             //CADA PETICION
             builder.RegisterType<SessionService>().SingleInstance();
-            builder.RegisterType<ViewModelPelicula>().SingleInstance();
-            builder.RegisterType<ViewPelicula>().SingleInstance();
+            builder.RegisterType<ViewModelListaUsuarios>();            
 
             //CONTRUIMOS EL CONTENEDOR
             this.container = builder.Build();
@@ -36,13 +35,9 @@ namespace AppCinema.IoC
         {
             get { return this.container.Resolve<SessionService>(); }
         }
-        public ViewModelPelicula ViewModelPelicula
+        public ViewModelListaUsuarios ViewModelListaUsuarios
         {
-            get { return this.container.Resolve<ViewModelPelicula>(); }
-        }
-        public ViewPelicula ViewPelicula
-        {
-            get { return this.container.Resolve<ViewPelicula>(); }
+            get { return this.container.Resolve<ViewModelListaUsuarios>(); }
         }
     }
 }

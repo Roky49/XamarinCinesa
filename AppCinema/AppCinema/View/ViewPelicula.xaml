@@ -4,9 +4,12 @@
              xmlns:control="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.CarouselView"
              xmlns:converters="clr-namespace:AppCinema.Converters"
              xmlns:viewmodels="clr-namespace:AppCinema.ViewModel"
-             xmlns:local="clr-namespace:AppCinema" BindingContext="{Binding Source={x:Static local:App.Locator}, Path=ViewModelPelicula}"
+             
              BackgroundColor="#292B2C"
              x:Class="AppCinema.View.ViewPelicula">
+    <ContentPage.BindingContext>
+        <viewmodels:ViewModelPelicula/>
+    </ContentPage.BindingContext>
     <ContentPage.Resources>
         <converters:ConverterInvertBoolean x:Key="invertValue"/>
     </ContentPage.Resources>

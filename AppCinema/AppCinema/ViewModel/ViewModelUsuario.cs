@@ -30,6 +30,7 @@ namespace AppCinema.ViewModel
 
                 menuPaginas.Add(userMovieList);
 
+
                 var page99 = new MenuPagina() { TipoPagina = typeof(ViewCerrarSesion), Titulo = "Cerrar Sesion" };
                 menuPaginas.Add(page99);
 

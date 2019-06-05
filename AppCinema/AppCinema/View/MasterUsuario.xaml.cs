@@ -1,4 +1,5 @@
 ﻿using AppCinema.Models;
+using AppCinema.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +41,32 @@ namespace AppCinema.View
             Detail = new NavigationPage((Page)Activator.CreateInstance(sellecionado.TipoPagina));
             IsPresented = false;
 
+        }
+
+        private async void CountriesSearchBar_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            String Busqueda = CountriesSearchBar.Text;
+            ViewBuscar view = new ViewBuscar();
+            ViewModelBuscar viewModel = new ViewModelBuscar();
+
+            viewModel.CadenaBuscar = Busqueda;
+
+            view.BindingContext = viewModel;
+
+            await Application.Current.MainPage.Navigation.PushModalAsync(view);
+        }
+
+        private async void CountriesSearchBar_SearchButtonPressed(object sender, EventArgs e)
+        {
+            String Busqueda = CountriesSearchBar.Text;
+            ViewBuscar view = new ViewBuscar();
+            ViewModelBuscar viewModel = new ViewModelBuscar();
+
+            viewModel.CadenaBuscar = Busqueda;
+
+            view.BindingContext = viewModel;
+
+            await Application.Current.MainPage.Navigation.PushModalAsync(view);
         }
     }
 }

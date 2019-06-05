@@ -34,10 +34,11 @@ namespace AppCinema.ViewModel
 
                 menuPaginas.Add(page2);
 
-               
+              
 
 
-                
+
+
 
             }
 
